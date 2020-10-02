@@ -3,19 +3,29 @@ body {
     width: 60%;
     margin: auto;
     margin-top: 20px;
-    border: 15px solid grey;
+    border: 15px solid rgb(165, 175, 175);
+
 }
 
 div {
-    margin: 10px;
+    margin: 20px 60px;
+    border-bottom: 2px solid rgb(190, 201, 201);
+}
+
+p:nth-of-type(1) {
+    padding-left: 10px;
+    border-left: 4px solid rgb(146, 165, 165);
 }
 
 h1 {
     text-transform: uppercase;
-    font-size: 15px;
-    font-weight: bolder;
+    font-size: 20px;
+    font-weight: 100;
+    color: lightblue;
 }
 
 h2 {
     text-transform: capitalize;
+    font-size: 30px;
+    font-weight: 400;
 }
