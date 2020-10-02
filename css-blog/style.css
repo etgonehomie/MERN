@@ -1,1 +1,21 @@
-css
+body {
+    font-family: 'Hind', sans-serif;
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    border: 15px solid grey;
+}
+
+div {
+    margin: 10px;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+h2 {
+    text-transform: capitalize;
+}
