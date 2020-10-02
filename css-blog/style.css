@@ -1,3 +1,11 @@
-h1 {}
+h1 {
+    font-family: 'Ubuntu', sans-serif;
+    font: 70px;
+    text-transform: uppercase;
+    padding-bottom: 0.75em;
+    border-bottom: 3px double grey;
+}
 
-p {}
+img {
+    width: 30%;
+}
