@@ -2,8 +2,9 @@ h1 {
     font-family: 'Ubuntu', sans-serif;
     font: 70px;
     text-transform: uppercase;
-    padding-bottom: 0.75em;
-    border-bottom: 3px double grey;
+    padding-bottom: 0.5em;
+    border-bottom: 5px double grey;
+    width: 400px;
 }
 
 img {
