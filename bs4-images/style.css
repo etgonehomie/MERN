@@ -1,0 +1,30 @@
+.pink {
+    background-color: pink;
+    height: 35px;
+    border: 1px dashed red;
+}
+
+h1 {
+    align-items: baseline;
+}
+
+h1 a {
+    margin-right: 10px;
+}
+
+nav {
+    background-color: rgb(78, 128, 235);
+    height: 35px
+}
+
+.dummy {
+    height: 300px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    /* margin: 10px; */
+}
+
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
