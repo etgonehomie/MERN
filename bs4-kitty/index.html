@@ -10,14 +10,40 @@
 
     <!-- Font Awesome CDN for free icons -->
     <!-- reference your copy Font Awesome here (from our CDN or by hosting yourself) -->
-    <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
-    <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
-    <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
-    <title>Kitty</title>
+    <!-- <link href="/Users/erictom/Programming/Portfolio/MERN/css/all.css" rel="stylesheet"> -->
+    <!-- <link href="/Users/erictom/Programming/Portfolio/MERN/css/fontawesome.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css"> -->
+
+
+    <title>Puurfect</title>
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar sticky-top navbar-expand-md navbar-light">
+        <!-- Set my brand -->
+        <a class="navbar-brand" href="#">
+            Puurfect Match
+        </a>
 
+        <!-- collapse into a hamburger menu when screen is small enough -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto">
+                <a class="navitem-active nav-link" href="#">Home</a>
+                <a class="navitem-active nav-link" href="#">About</a>
+                <a class="navitem-active nav-link" href="#">Contact</a>
+            </ul>
+            <ul class="navbar-nav">
+                <a class="navitem-active nav-link" href="#">Sign-up <i class="fas fa-user-plus"></i></a>
+                <a class="navitem-active nav-link" href="#">Login <i class="fas fa-user-ninja"></i></a>
+            </ul>
+
+        </div>
+    </nav>
 </body>
 <!-- JS Code for BS4 -->
 <script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
