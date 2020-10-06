@@ -1,0 +1,15 @@
+h1 {
+    font-family: 'Ubuntu', sans-serif;
+    font: 70px;
+    text-transform: uppercase;
+    padding-bottom: 0.5em;
+    border-bottom: 5px double grey;
+    width: 400px;
+}
+
+img {
+    width: 30%;
+    float: left;
+    margin-bottom: 30px;
+    margin-left: 1.66%;
+}
