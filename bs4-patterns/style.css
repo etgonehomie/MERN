@@ -16,16 +16,13 @@
 
 .main-page {
     background-image: url("https://images.unsplash.com/photo-1518115717919-4c755c325f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80");
+    background-size: initial;
+    background-position: center;
+    width: 100%;
+    color: whitesmoke;
+    text-align: center;
 }
 
-.card1 {
-    background-image: url("https://images.unsplash.com/photo-1601583348715-24050c24a7f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc5NjV9&auto=format&fit=crop&w=1350&q=80");
-}
-
-.card2 {
-    background-image: url("https://images.unsplash.com/photo-1593510987370-225860c900b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
-}
-
-.card3 {
-    background-image: url("https://images.unsplash.com/photo-1570633306441-2a2d8535962f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+.card {
+    width: 20rem;
 }
