@@ -36,7 +36,7 @@ html {
 
 body {
     background-image: url("https://cdn.wallpapersafari.com/0/56/m7ugzN.jpg");
-    background-size: stretch;
+    background-size: cover;
     background-position: center;
     font-family: "Lato", sans-serif;
     color: white;
