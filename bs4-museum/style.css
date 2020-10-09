@@ -17,3 +17,15 @@
 .navbar {
     background-color: rgb(207, 184, 226);
 }
+
+.nav-link {
+    color: white;
+}
+
+.test {
+    font-size: 10rem;
+}
+
+.navbar-brand {
+    color: rgb(226, 72, 111);
+}
