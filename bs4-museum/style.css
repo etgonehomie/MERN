@@ -20,7 +20,17 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+.dummy {
+    background-color: greenyellow;
+}
 
+#headingGroup {
+    font-size: 10rem;
+}
+
+#headingGroup span {
+    color: rgb(226, 72, 111);
+}
 
 #headerNav .nav-link {
     color: white;
