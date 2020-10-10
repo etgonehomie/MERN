@@ -1,6 +1,6 @@
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css");
 @import url("https://use.fontawesome.com/releases/v5.15.0/css/all.css");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
 
 /* Need for Font Awesome to work */
 .fp-prev:before {
@@ -14,18 +14,32 @@
     font-size: 40px;
 }
 
-.navbar {
-    background-color: rgb(207, 184, 226);
+
+body {
+    background-color: rgb(229, 201, 225);
+    font-family: 'Nunito', sans-serif;
 }
 
-.nav-link {
+
+
+#headerNav .nav-link {
     color: white;
 }
 
-.test {
-    font-size: 10rem;
+#headerNav .nav-link:hover {
+    color: rgb(226, 72, 111);
 }
 
-.navbar-brand {
+#headerNav .navbar-brand {
     color: rgb(226, 72, 111);
+}
+
+#headerNav {
+    background-color: rgb(207, 184, 226);
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+
+.test {
+    font-size: 4rem;
 }
