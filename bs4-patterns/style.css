@@ -4,32 +4,33 @@
 
 /* Need for Font Awesome to work */
 .fp-prev:before {
-    color: #000;
-    content: "\f35a";
-    /* You should use \ and not /*/
-    font-family: "Font Awesome 5 Free";
-    /* This is the correct font-family*/
-    font-style: normal;
-    font-weight: normal;
-    font-size: 40px;
+  color: #000;
+  content: "\f35a";
+  /* You should use \ and not /*/
+  font-family: "Font Awesome 5 Free";
+  /* This is the correct font-family*/
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
 }
 
 #main-page {
-    background-image: url("https://images.unsplash.com/photo-1518115717919-4c755c325f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80");
-    background-size: initial;
-    background-position: center;
-    width: 100%;
-    color: white;
+  background-image: url("https://images.unsplash.com/photo-1518115717919-4c755c325f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  color: white;
+  text-shadow: 1px 1px 2px grey;
 }
 
 #main-content::before {
-    content: "";
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background-color: rgba(0, 0, 0, 0.25);
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 /* 
