@@ -17,16 +17,39 @@
 body {
   background-color: rgb(229, 201, 225);
   font-family: "Nunito", sans-serif;
+  text-align: center;
 }
-
-.dummy {
+/* .container-fluid {
   background-color: greenyellow;
 }
 
-#headingGroup {
-  font-size: 3rem;
+.img-description {
+  background-color: grey;
+  border: 2px solid black;
+}
+
+.img-section {
+  background-color: grey;
+  width: 100%;
+  border: 2px solid black;
+} */
+
+.container-pair {
+  font-family: "Lato", sans-serif;
+  font-weight: 200;
+  color: rgb(190, 62, 94);
+  line-height: 2em;
+  font-size: 0.8em;
+}
+
+.container-pair h1 {
+  font-size: 2em;
+}
+#headingGroup h1 {
+  font-size: 3em;
   font-weight: 200;
   font-family: "Lato", sans-serif;
+  line-height: 1em;
 }
 
 #headingGroup span {
