@@ -1,55 +1,57 @@
 @import url("https://use.fontawesome.com/releases/v5.15.0/css/all.css");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@200;300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
 
 /* Need for Font Awesome to work */
 .fp-prev:before {
-    color: #000;
-    content: "\f35a";
-    /* You should use \ and not /*/
-    font-family: "Font Awesome 5 Free";
-    /* This is the correct font-family*/
-    font-style: normal;
-    font-weight: normal;
-    font-size: 40px;
+  color: #000;
+  content: "\f35a";
+  /* You should use \ and not /*/
+  font-family: "Font Awesome 5 Free";
+  /* This is the correct font-family*/
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
 }
 
-
 body {
-    background-color: rgb(229, 201, 225);
-    font-family: 'Nunito', sans-serif;
+  background-color: rgb(229, 201, 225);
+  font-family: "Nunito", sans-serif;
 }
 
 .dummy {
-    background-color: greenyellow;
+  background-color: greenyellow;
 }
 
 #headingGroup {
-    font-size: 10rem;
+  font-size: 3rem;
+  font-weight: 200;
+  font-family: "Lato", sans-serif;
 }
 
 #headingGroup span {
-    color: rgb(226, 72, 111);
+  color: rgb(226, 72, 111);
 }
 
 #headerNav .nav-link {
-    color: white;
+  color: white;
 }
 
 #headerNav .nav-link:hover {
-    color: rgb(226, 72, 111);
+  color: rgb(226, 72, 111);
 }
 
 #headerNav .navbar-brand {
-    color: rgb(226, 72, 111);
+  color: rgb(226, 72, 111);
+  font-size: 1.25em;
 }
 
 #headerNav {
-    background-color: rgb(207, 184, 226);
-    font-size: 1.5rem;
-    font-weight: 100;
+  background-color: rgb(207, 184, 226);
+  font-size: 1.5rem;
+  font-weight: 100;
 }
 
 .test {
-    font-size: 4rem;
+  font-size: 2rem;
 }
