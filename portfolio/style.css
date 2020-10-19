@@ -1,6 +1,15 @@
 @import url("reset.css");
+@import url("global.css");
 @import url("navbar-specifics.css");
 @import url("main-specifics.css");
 @import url("portfolio-specifics.css");
 @import url("timeline-specifics.css");
-@import url("language-specifics");
+@import url("languages-specifics");
+
+.dummy {
+  background: gray;
+  border: 1px solid black;
+}
+
+.navbar-brand {
+}
