@@ -1,10 +1,10 @@
-@import url("reset.css");
-@import url("global.css");
-@import url("navbar-specifics.css");
-@import url("main-specifics.css");
-@import url("portfolio-specifics.css");
-@import url("timeline-specifics.css");
-@import url("languages-specifics");
+@import url("https://github.com/etgonehomie/MERN/blob/337aab855f95c1bce3df86ea4dc25d615075b825/portfolio/Views/reset.css");
+@import url("https://github.com/etgonehomie/MERN/blob/337aab855f95c1bce3df86ea4dc25d615075b825/portfolio/Views/global.css");
+@import url("Views/navbar-specifics.css");
+@import url("Views/main-specifics.css");
+@import url("Views/portfolio-specifics.css");
+@import url("Views/timeline-specifics.css");
+@import url("Views/languages-specifics");
 
 .dummy {
   background: gray;
@@ -12,4 +12,15 @@
 }
 
 .navbar-brand {
+}
+
+body {
+  /* height: 50vh; */
+  /* background-color: greenyellow; */
+  /* background-size: 100%; */
+  background-size: cover;
+  height: 100vh;
+  background: url("https://github.com/etgonehomie/MERN/blob/portfolio/portfolio/imgs/passion.jpg");
+  border: 3px solid black;
+  background-position: center;
 }
