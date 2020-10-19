@@ -1,1 +1,6 @@
-global
+body {
+  background-image: url("https://github.com/etgonehomie/MERN/blob/portfolio/portfolio/imgs/passion.jpeg");
+  /* background-color: greenyellow; */
+  background-position: center;
+  background-size: cover;
+}
