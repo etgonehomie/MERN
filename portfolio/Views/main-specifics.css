@@ -1,10 +1,8 @@
 body {
-  /* height: 50vh; */
-  background-color: greenyellow;
   height: 100vh;
-  background-image: url("../imgs/passion.jpg");
+  background-image: url("../imgs/macbook-corner.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: top;
 }
 
 #section-main-page {
@@ -12,13 +10,62 @@ body {
   text-align: center;
 }
 
-#my-picture {
-  min-height: 20vh;
+em {
+  font-style: italic;
+  font-weight: lighter;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#my-face {
+  max-height: 45vh;
+  border-radius: 1em;
+  box-shadow: 10px 10px 10px -4px rgba(0, 0, 0, 0.5);
+}
+
+#my-name {
+  font-size: 1.5em;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 #my-tagline {
-  vertical-align: middle;
+  font-size: 2.9em;
+  font-weight: 100;
+  text-transform: lowercase;
 }
-.test {
-  height: 100vh;
+
+#my-tagline h1 {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+#my-tagline p {
+  font-size: 0.6em;
+  font-weight: thin;
+}
+
+#my-tagline h2 {
+  font-size: 0.75em;
+}
+
+#my-tagline h3 {
+  font-size: 0.75em;
+}
+
+#section-about-me {
+  text-align: center;
+}
+
+#main-action-btn a {
+  font-size: 1.5em;
+  color: black;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 500px) {
+  #my-face {
+    max-height: 40vh;
+  }
+
+  #my-tagline {
+    font-size: 2.2em;
+  }
 }
