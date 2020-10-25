@@ -41,16 +41,25 @@
       </div>
     </nav>
 
+    <!-- testing flexbox setup -->
+    <!-- <section class="test d-flex flex-column flex-lg-row bd-highlight">
+      <div class="dummy2 p-2 flex-grow-1 bd-highlight">Flex item</div>
+      <div class="dummy2 p-2 bd-highlight">Flex item</div>
+      <div class="dummy2 p-2 flex-grow-1 bd-highlight">Third flex item</div>
+    </section> -->
+
     <!-- Main Landing Page -->
-    <section id="section-main-page" class="dummy container">
-      <div class="row">
-        <div class="dummy col-12 col-md-6"><h1>Eric Tom</h1></div>
-        <div class="dummy col-12 col-md-6"><h1>MERN Fullstack</h1></div>
+    <section id="section-main-page" class="dummy d-flex flex-column">
+      <div id="my-picture" class="dummy2">Picture</div>
+      <div id="my-name" class="dummy2">Eric Tom</div>
+      <div id="my-tagline" class="flex-grow-1 dummy2">Tagline</div>
+      <div id="my-main-action-btn" class="flex-grow-1 dummy2">
+        <a href="#">ACTION</a>
       </div>
     </section>
 
     <!-- Header About Me Section -->
-    <section id="section-about-me" class="dummy container">
+    <section id="section-about-me" class="dummy container-fluid">
       <h1>About Me</h1>
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores
