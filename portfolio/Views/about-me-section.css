@@ -5,7 +5,7 @@
   text-align: center;
 }
 
-#section-about-me h1 {
+#section-about-me > h1 {
   font-size: 1.5em;
 }
 

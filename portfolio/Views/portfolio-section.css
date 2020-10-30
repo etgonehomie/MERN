@@ -1,1 +1,34 @@
-portfolio
+#section-portfolio > h1 {
+  text-align: center;
+  font-size: 3em;
+}
+
+#section-portfolio .card {
+  margin: 1em;
+  color: white;
+  text-align: center;
+  border-radius: 1.5em;
+}
+
+#section-portfolio .card-img-overlay {
+  border-radius: 1.5em;
+}
+#section-portfolio .card-title {
+  vertical-align: middle;
+}
+
+#section-portfolio .card {
+}
+
+.card-img {
+  border-radius: 1.5em;
+}
+/* TODO: Add a transition to the overlay */
+#section-portfolio .card-img-overlay:hover {
+  text-decoration: none;
+  background-size: contain;
+}
+
+#portfolio-item-1:hover {
+  background-image: url(../imgs/dummy-portfolio/p1-hover.jpg);
+}
