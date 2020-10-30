@@ -1,5 +1,5 @@
 #section-about-me {
-  height: 50vh;
+  min-height: 50vh;
   padding: 0 10%;
   font-size: 2em;
   text-align: center;
