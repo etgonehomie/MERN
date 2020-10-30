@@ -14,7 +14,8 @@
   border-radius: 1.5em;
 }
 #section-portfolio .card-title {
-  vertical-align: middle;
+  padding: 25% 0;
+  font-size: 2em;
 }
 
 #section-portfolio .card {
@@ -31,4 +32,12 @@
 
 #portfolio-item-1:hover {
   background-image: url(../imgs/dummy-portfolio/p1-hover.jpg);
+}
+
+#portfolio-item-2:hover {
+  background-image: url(../imgs/dummy-portfolio/p2-hover.jpg);
+}
+
+#portfolio-item-3:hover {
+  background-image: url(../imgs/dummy-portfolio/p3-hover.jpg);
 }
