@@ -1,0 +1,82 @@
+@import url("https://use.fontawesome.com/releases/v5.15.0/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@200;300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
+
+/* Need for Font Awesome to work */
+.fp-prev:before {
+  color: #000;
+  content: "\f35a";
+  /* You should use \ and not /*/
+  font-family: "Font Awesome 5 Free";
+  /* This is the correct font-family*/
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+}
+
+body {
+  background-color: rgb(229, 201, 225);
+  font-family: "Nunito", sans-serif;
+  text-align: center;
+}
+/* .container-fluid {
+  background-color: greenyellow;
+}
+
+.img-description {
+  background-color: grey;
+  border: 2px solid black;
+}
+
+.img-section {
+  background-color: grey;
+  width: 100%;
+  border: 2px solid black;
+} */
+
+.lolli-icon {
+}
+.container-pair {
+  font-family: "Lato", sans-serif;
+  font-weight: 200;
+  color: rgb(190, 62, 94);
+  line-height: 2em;
+  font-size: 0.8em;
+}
+
+.container-pair h1 {
+  font-size: 2em;
+}
+#headingGroup h1 {
+  font-size: 3em;
+  font-weight: 200;
+  font-family: "Lato", sans-serif;
+  line-height: 1em;
+}
+
+#headingGroup span {
+  color: rgb(226, 72, 111);
+}
+
+#headerNav .nav-link {
+  color: white;
+}
+
+#headerNav .nav-link:hover {
+  color: rgb(226, 72, 111);
+}
+
+#headerNav .navbar-brand {
+  color: rgb(226, 72, 111);
+  font-size: 1.25em;
+}
+
+#headerNav {
+  background-color: rgb(207, 184, 226);
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+
+.test {
+  font-size: 2rem;
+}
