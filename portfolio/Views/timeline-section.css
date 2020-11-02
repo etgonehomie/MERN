@@ -6,7 +6,9 @@
 
 /* TODO: Need to add transitions */
 
-
+.timeline-item {
+    margin: 1.5rem 0;
+}
 .timeline-icon {
   border-radius: 50%;
   background-color: greenyellow;
@@ -17,6 +19,8 @@
 
 .timeline-year {
     font-size: 1.5rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
 }
 
 .timeline-text {
