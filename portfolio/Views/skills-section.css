@@ -1,1 +1,34 @@
-languages
+#section-skills {
+  text-align: center;
+  background-color: white;
+  border-radius: 2em;
+  border-color: whitesmoke;
+}
+
+#section-skills h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+#section-skills h2 {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+#languages-list li {
+  max-width: 20em;
+}
+
+#additional-skills-list li {
+  font-size: 3rem;
+  margin: 2rem;
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 2px 2px #888888;
+  border-radius: 0.5em;
+  background-color: violet;
+}
+
+#additional-skills-list li:nth-child(odd) {
+  background-color: wheat;
+}
