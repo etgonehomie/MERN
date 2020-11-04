@@ -22,6 +22,10 @@
   background-color: violet;
 }
 
+/* TODO: Add media query to reduce font size of the skills */
 #additional-skills-list li:nth-child(odd) {
   background-color: wheat;
+}
+
+@media-query (max-width: 400px) {
 }
