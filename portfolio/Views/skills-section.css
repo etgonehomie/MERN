@@ -1,18 +1,8 @@
 #section-skills {
   text-align: center;
   background-color: white;
-  border-radius: 2em;
+  border-radius: 1em;
   border-color: whitesmoke;
-}
-
-#section-skills h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-#section-skills h2 {
-  font-size: 1.5rem;
-  margin: 1rem 0;
 }
 
 #languages-list li {
@@ -20,12 +10,15 @@
 }
 
 #additional-skills-list li {
-  font-size: 3rem;
+  font-size: 2rem;
+  vertical-align: bottom;
   margin: 2rem;
   border: 1px solid;
-  padding: 10px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  /* padding: 1rem 3rem; */
   box-shadow: 2px 2px #888888;
-  border-radius: 0.5em;
+  border-radius: 0.3em;
   background-color: violet;
 }
 

@@ -49,7 +49,7 @@
     </section> -->
 
     <!-- Main Landing Page -->
-    <section id="section-main-page" class="d-flex flex-column container my-5">
+    <section id="section-main-page" class="d-flex flex-column container-fluid my-5">
       <div id="my-picture" class="my-5 pb-sm-5">
         <img id="my-face" src="/portfolio/imgs/main-photo.png" />
       </div>
@@ -190,7 +190,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="section-skills" class="dummy container-fluid">
+    <section id="section-skills" class="dummy container">
       <h1>Skills</h1>
       <h2>Languages</h2>
 
@@ -209,15 +209,16 @@
         <li class="col-3"><img src="imgs/languages/bs4.jpeg" class="img-fluid"></li>
       </ul>
       <h2>Additional Skills</h2>
-      <ul id="additional-skills-list" class="d-flex flex-wrap justify-content-center">
-        <li>Design Documentation</li>
-        <li>Git</li>
-        <li>Requirement Gathering</li>
-        <li>SDLC</li>
-        <li>Agile Methodology</li>
-        <li>Scrum</li>
-        <li>Kanban</li>
-        <li>Facilitation</li>
+      <!-- <ul id="additional-skills-list" class="d-flex flex-wrap flex-rowjustify-content-center"> -->
+        <!-- TODO: Need to fix spacing on this -->
+        <ul id="additional-skills-list" class="d-flex row justify-content-center">
+        <li class="col-12 col-md-6 col-xl-4"><i class="far fa-edit"></i>  Design Documentation</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="fab fa-github"></i>  Git</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="far fa-lightbulb"></i>  Requirement Gathering</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="fas fa-laptop-code"></i>  SDLC</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="fas fa-recycle"></i>  Agile Methodology</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="fab fa-trello"></i>  Kanban</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="fas fa-users"></i>  Facilitation</li>
       </ul>
     </section>
 
