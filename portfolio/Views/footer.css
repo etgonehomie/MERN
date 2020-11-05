@@ -1,0 +1,20 @@
+footer {
+  font-size: 1.1rem;
+}
+
+footer li {
+  font-size: 1.3rem;
+  padding: 0 4px;
+}
+
+#footer-git i {
+  color: black;
+}
+
+#footer-linkedin i {
+  color: #2867b2;
+}
+
+#footer-email i {
+  color: #bb001b;
+}

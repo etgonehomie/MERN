@@ -33,10 +33,11 @@
       </button>
       <div class="collapse navbar-collapse" id="mainNavbar">
         <div class="container navbar-nav d-flex justify-content-around">
-          <a class="nav-link" href="#">About</a>
-          <a class="nav-link" href="#">Portfolio</a>
-          <a class="nav-link" href="#">Journey</a>
-          <a class="nav-link" href="#">Skills</a>
+          <a class="nav-link" href="#section-about-me">About</a>
+          <a class="nav-link" href="#section-portfolio">Portfolio</a>
+          <a class="nav-link" href="#section-timeline">Journey</a>
+          <a class="nav-link" href="#section-skills">Skills</a>
+          <a class="nav-link" href="#section-footer">Contact</a>
         </div>
       </div>
     </nav>
@@ -65,12 +66,12 @@
         <p class="pt-1">Writing clean scalable code all while having fun.</p>
       </div>
       <div id="main-action-btn" class="flex-grow-1 mt-4 mb-2">
-        <a href="#">View Portfolio</a>
+        <a href="#section-portfolio">View Portfolio</a>
       </div>
     </section>
 
     <!-- Header About Me Section -->
-    <section id="section-about-me" class="container my-5">
+    <section id="section-about-me" class="container">
       <h1 class="pb-5">Who am I?</h1>
       <p>
         I am a self taught developer. Started off with Swift for iOS. However, I
@@ -114,7 +115,7 @@
         </div>
 
         <!-- Project 2 -->
-        <div class="col my-3">
+        <div class="dummy col my-3">
           <div class="card">
             <img
               src="../portfolio/imgs/dummy-portfolio/p2.jpg"
@@ -127,8 +128,9 @@
           </div>
         </div>
 
+        <!-- TODO: Fix the picture size. This third one is larger than the other 2 in xl screen -->
         <!-- Project 3 -->
-        <div class="col my-3">
+        <div class="dummy col my-3">
           <div class="card">
             <img
               src="../portfolio/imgs/dummy-portfolio/p3.jpg"
@@ -208,17 +210,17 @@
         <li class="col-3"><img src="imgs/languages/css.jpeg" class="img-fluid"></li>
         <li class="col-3"><img src="imgs/languages/bs4.jpeg" class="img-fluid"></li>
         <!-- TODO: Add JQuery picture -->
-        <li class="col-3"><img src="jquery" class="img-fluid"></li>
+        <li class="col-3"><img src="imgs/languages/jquery.png" class="img-fluid"></li>
       </ul>
 
       <h2>Tools</h2>
-      <ul>
+      <ul id="tools-list" class="d-flex flex-row flex-wrap justify-content-around align-items-center">
         <!-- TODO: Add tools picture -->
-        <li class="col-3">Git</li>
-        <li class="col-3">Jira</li>
-        <li class="col-3">VS Code</li>
-        <li class="col-3">Sourcetree</li>
-        <li class="col-3">Terminal</li>
+        <li class="col-4"><img src="imgs/tools/git.png" class="img-fluid"></li>
+        <li class="col-4"><img src="imgs/tools/jira.jpeg" class="img-fluid"></li>
+        <li class="col-4"><img src="imgs/tools/vs-code.jpeg" class="img-fluid"></li>
+        <li class="col-4"><img src="imgs/tools/sourcetree.png" class="img-fluid"></li>
+        <li class="col-4"><img src="imgs/tools/bash.jpeg" class="img-fluid"></li>
       </ul>
       <h2>Additional Skills</h2>
       
@@ -239,13 +241,16 @@
     </section>
 
     <!-- Footer Section -->
-    <section id="section-footer" class="dummy container">
-      <h1>About me</h1>
-      <h1>Languages</h1>
-      <h1>Addtional Skills</h1>
-      <h1>Contact Me</h1>
-      <h1>Git Repos</h1>
-    </section>
+    <footer id="section-footer" class="my-5 text-center">
+      <p class="mb-2">Contact Me</p>
+      <ul class="list-inline">
+        <li id="footer-git" class="list-inline-item"><a href="https://github.com/etgonehomie"
+          target="_blank"><i class="fab fa-github"></i></a></li>
+        <li id="footer-linkedin" class="list-inline-item"><a href="https://www.linkedin.com/in/eric-tom"
+          target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+        <li id="footer-email" class="list-inline-item"><a href="mailto:emtom22@gmail.com?subject=Job%20Opportunity%20Chat"><i class="far fa-envelope"></i></a></li>
+      </ul>
+    </footer>
   </body>
   <!-- JS Code for BS4 -->
   <script

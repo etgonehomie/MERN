@@ -2,11 +2,12 @@
   margin: 1em;
   color: white;
   text-align: center;
-  border-radius: 1.5em;
+  border-radius: 1em;
+  max-height: 300px;
 }
 
 #section-portfolio .card-img-overlay {
-  border-radius: 1.5em;
+  border-radius: 1em;
 }
 #section-portfolio .card-title {
   padding: 25% 0;
@@ -17,7 +18,7 @@
 }
 
 .card-img {
-  border-radius: 1.5em;
+  border-radius: 1em;
 }
 /* TODO: Add a transition to the overlay */
 #section-portfolio .card-img-overlay:hover {
