@@ -1,14 +1,14 @@
 const btn = document.querySelector("BUTTON");
 btn.addEventListener("click", generateRGB);
 
-function randomNumber(min = 0, max = 255) {
+function randomNumber(max, min = 0) {
   return Math.round(Math.random() * (max - min) + min);
 }
 
 function generateRGB() {
-  const red = randomNumber();
-  const green = randomNumber();
-  const blue = randomNumber();
+  const red = randomNumber(255);
+  const green = randomNumber(255);
+  const blue = randomNumber(255);
   const rgbColor = `rgb(${red},${green},${blue})`;
   document.querySelector("H2").innerHTML = rgbColor;
   document.body.style.backgroundColor = rgbColor;
