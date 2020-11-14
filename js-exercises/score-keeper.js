@@ -1,76 +1,81 @@
-// const playerOne
-const playerOneDisplay = document.querySelector("#p1Display");
-const playerTwoDisplay = document.querySelector("#p2Display");
 const winScoreSelector = document.querySelector("#playto");
-const playerOneButton = document.querySelector("#p1Button");
-const playerTwoButton = document.querySelector("#p2Button");
 const resetButton = document.querySelector("#reset");
 
-const playerButtons = [playerOneButton, playerTwoButton];
-const playerDisplays = [playerOneDisplay, playerTwoDisplay];
+const playerOne = {
+  score: 0,
+  display: document.querySelector("#p1Display"),
+  button: document.querySelector("#p1Button"),
+  didWin: false,
+};
 
-// craete event listeners for each button
-// 1. if p1/p2 pressed update display
-// 2. if p1 or p2 display reaches winScore
-//     > grey out buttons and set color of displays to green/red as needed
-// 3. if reset button is pressed
-//     > un-grey out buttons
-//     > reset displays
-//     > reset colors
+const playerTwo = {
+  score: 0,
+  display: document.querySelector("#p2Display"),
+  button: document.querySelector("#p2Button"),
+  didWin: false,
+};
 
-let playerOneScore = 0;
-let playerTwoScore = 0;
+const players = [playerOne, playerTwo];
+
 let winScore = winScoreSelector.value;
-console.log(`winscore is ${winScore}`);
+
+// EVENT LISTENERS
 winScoreSelector.addEventListener("change", (event) => {
   winScore = event.target.value;
 });
 
-playerButtons.forEach((button) => {
-  button.addEventListener("click", playerScored);
+players.forEach((player) => {
+  player.button.addEventListener("click", playerScored);
 });
 
 resetButton.addEventListener("click", resetGame);
 
+// Updates the relevant player score and checks to see if game ended or not
 function playerScored() {
-  if (this.id == "p1Button") {
-    playerOneScore += 1;
-    playerOneDisplay.innerHTML = playerOneScore;
-    if (playerOneScore >= winScore) {
-      playerOneDisplay.classList.add("win-display");
-      playerTwoDisplay.classList.add("lose-display");
-      setButtonsDisabled(true);
+  const player = getPlayer(this.id);
+  player.score += 1;
+  player.display.innerHTML = player.score;
+  if (player.score >= winScore) {
+    player.didWin = true;
+    stopGame();
+  }
+}
+
+function stopGame() {
+  for (player of players) {
+    console.log(player);
+    player.button.setAttribute("disabled", true);
+    if (player.didWin == true) {
+      player.display.classList.add("win-display");
+    } else {
+      player.display.classList.add("lose-display");
     }
-  } else {
-    playerTwoScore += 1;
-    playerTwoDisplay.innerHTML = playerTwoScore;
-    if (playerTwoScore >= winScore) {
-      playerTwoDisplay.classList.add("win-display");
-      playerOneDisplay.classList.add("lose-display");
-      setButtonsDisabled(true);
+  }
+}
+
+function resetGame() {
+  for (player of players) {
+    player.didWin = false;
+    player.score = 0;
+    player.display.innerHTML = player.score;
+    player.display.classList.add("reset-display");
+    player.display.classList.remove("win-display", "lose-display");
+    player.button.removeAttribute("disabled");
+  }
+}
+
+function getPlayer(id) {
+  for (player of players) {
+    if (player.button.id == id) {
+      return player;
     }
   }
 }
 
 function setButtonsDisabled(isDisabled) {
-  playerButtons.forEach((button) => {
-    console.dir(button);
+  players.forEach((player) => {
     if (isDisabled) {
-      button.setAttribute("disabled", isDisabled);
-    } else {
-      button.removeAttribute("disabled");
+      player.button.setAttribute("disabled", true);
     }
-  });
-}
-
-function resetGame() {
-  setButtonsDisabled(false);
-  playerOneScore = 0;
-  playerTwoScore = 0;
-
-  playerDisplays.forEach((display) => {
-    display.innerHTML = "0";
-    display.classList.add("reset-display");
-    display.classList.remove("win-display", "lose-display");
   });
 }
