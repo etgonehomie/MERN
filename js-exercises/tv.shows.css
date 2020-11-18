@@ -1,1 +1,16 @@
-tv-shows
+body {
+  text-align: center;
+}
+
+button {
+  margin-left: 2rem;
+}
+#tv-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tv-thumbnail {
+  margin: 1.5rem;
+}
