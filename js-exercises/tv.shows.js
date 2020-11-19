@@ -1,8 +1,3 @@
-// 1. On Search, query the API with the given string
-// 2. get the results, and save the...
-//     show -> image -> medium
-//     show -> name
-
 const tvListDiv = document.querySelector("#tv-list");
 const searchButton = document.querySelector("button");
 const queryInput = document.querySelector("input");
@@ -24,8 +19,6 @@ async function searchForTvShows() {
       console.log(`${name} for ${thumbnail}`);
     }
     queryInput.value = "";
-
-    // const jsonData
   } catch (e) {
     alert("No tv shows found with that name.", e);
   }
