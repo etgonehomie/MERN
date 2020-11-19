@@ -4,7 +4,8 @@ const queryInput = document.querySelector("input");
 
 async function searchForTvShows() {
   const queryString = queryInput.value;
-  if (queryString == "") {
+  if (!isValidInput(queryString)) {
+    queryInput.value = "";
     return;
   }
   const url = `http://api.tvmaze.com/search/shows?q=${queryString}`;
@@ -25,6 +26,22 @@ async function searchForTvShows() {
     }
   }
 
+  function isLetter(input) {
+    const regExp = /[A-Za-z]/;
+    return input.length > 0 && input.match(regExp);
+  }
+
+  function isAlphaNumeric(input) {
+    const regExp = /[A-Za-z0-9]/;
+    return input.match(regExp);
+  }
+
+  function isValidInput(input) {
+    if (isLetter(input.slice(0, 1)) && isAlphaNumeric(input)) {
+      return true;
+    }
+    return false;
+  }
   // Display a given array of shows
   function displayShows(shows) {
     for (show of shows) {
