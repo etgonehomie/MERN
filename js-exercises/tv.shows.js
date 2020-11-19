@@ -3,21 +3,17 @@ const searchButton = document.querySelector("button");
 const queryInput = document.querySelector("input");
 
 async function searchForTvShows() {
-  const url = `http://api.tvmaze.com/search/shows?q=${queryInput.value}`;
+  const queryString = queryInput.value;
+  if (queryString == "") {
+    return;
+  }
+  const url = `http://api.tvmaze.com/search/shows?q=${queryString}`;
   try {
     const rawData = await fetch(url);
     const jsonData = await rawData.json();
     clearTvList(tvListDiv);
     const shows = jsonData.map((entry) => entry.show);
-    console.log(shows);
-
-    for (show of shows) {
-      const name = show.name;
-      const images = show.image;
-      let thumbnail = images === null ? null : images.medium;
-      createThumbnail(name, thumbnail);
-      console.log(`${name} for ${thumbnail}`);
-    }
+    displayShows(shows);
     queryInput.value = "";
   } catch (e) {
     alert("No tv shows found with that name.", e);
@@ -29,6 +25,18 @@ async function searchForTvShows() {
     }
   }
 
+  // Display a given array of shows
+  function displayShows(shows) {
+    for (show of shows) {
+      const name = show.name;
+      const images = show.image;
+      let thumbnail = images === null ? null : images.medium;
+      createThumbnail(name, thumbnail);
+      console.log(`${name} for ${thumbnail}`);
+    }
+  }
+
+  // Create a thumbnail and add it to the tv list section
   function createThumbnail(name, image) {
     const tvThumbnail = document.createElement("IMG");
     const defaultImage =
@@ -41,3 +49,9 @@ async function searchForTvShows() {
 }
 
 searchButton.addEventListener("click", searchForTvShows);
+queryInput.addEventListener("keydown", (key) => {
+  console.log(key.code);
+  if (key.code === "Enter") {
+    searchForTvShows();
+  }
+});
