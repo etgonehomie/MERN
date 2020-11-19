@@ -50,7 +50,6 @@ async function searchForTvShows() {
 
 searchButton.addEventListener("click", searchForTvShows);
 queryInput.addEventListener("keydown", (key) => {
-  console.log(key.code);
   if (key.code === "Enter") {
     searchForTvShows();
   }
