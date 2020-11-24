@@ -1,0 +1,18 @@
+.reset-display {
+  color: black;
+}
+
+.end-game {
+}
+
+.win-display {
+  color: green;
+}
+
+.lose-display {
+  color: red;
+}
+
+body {
+  color: purple;
+}

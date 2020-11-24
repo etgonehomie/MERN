@@ -1,0 +1,39 @@
+#section-portfolio .card {
+  margin: 1em;
+  color: white;
+  text-align: center;
+  border-radius: 1em;
+  max-height: 300px;
+}
+
+#section-portfolio .card-img-overlay {
+  border-radius: 1em;
+}
+#section-portfolio .card-title {
+  padding: 25% 0;
+  font-size: 2em;
+}
+
+#section-portfolio .card {
+}
+
+.card-img {
+  border-radius: 1em;
+}
+/* TODO: Add a transition to the overlay */
+#section-portfolio .card-img-overlay:hover {
+  text-decoration: none;
+  background-size: contain;
+}
+
+#portfolio-item-1:hover {
+  background-image: url(../imgs/dummy-portfolio/p1-hover.jpg);
+}
+
+#portfolio-item-2:hover {
+  background-image: url(../imgs/dummy-portfolio/p2-hover.jpg);
+}
+
+#portfolio-item-3:hover {
+  background-image: url(../imgs/dummy-portfolio/p3-hover.jpg);
+}

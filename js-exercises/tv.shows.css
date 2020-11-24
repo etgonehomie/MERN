@@ -1,0 +1,16 @@
+body {
+  text-align: center;
+}
+
+button {
+  margin: 1rem 2rem;
+}
+#tv-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tv-thumbnail {
+  margin: 1.5rem;
+}

@@ -1,0 +1,25 @@
+@import url("../Views/reset.css");
+@import url("../Views/global.css");
+@import url("../Views/navbar-section.css");
+@import url("../Views/main-section.css");
+@import url("../Views/about-me-section.css");
+@import url("../Views/portfolio-section.css");
+@import url("../Views/timeline-section.css");
+@import url("../Views/skills-section.css");
+@import url("../Views/footer.css");
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&family=Roboto&display=swap");
+
+body {
+  font-family: "Roboto", "Montserra", sans-serif;
+  font-weight: thin;
+}
+.dummy {
+  background: lightblue;
+  border: 1px solid black;
+}
+
+.dummy2 {
+  background: lightpink;
+  border: 1px solid black;
+}

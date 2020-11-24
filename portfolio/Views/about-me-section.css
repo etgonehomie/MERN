@@ -1,0 +1,31 @@
+#section-about-me {
+  min-height: 50vh;
+  padding: 0 10%;
+  font-size: 2em;
+  text-align: center;
+}
+
+#section-about-me > h1 {
+  font-size: 1.5em;
+}
+
+#section-about-me p {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+#journey-btn {
+  font-size: 0.8em;
+}
+
+@media (max-width: 900px) {
+  #section-about-me {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 600px) {
+  #section-about-me {
+    font-size: 1.2em;
+  }
+}

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Views/style.css" />
+    <title>Eric Tom</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
+      <a
+        class="navbar-brand"
+        href="https://www.linkedin.com/in/eric-tom"
+        target="_blank"
+        ><span id="nav-icon" class="pl-1 pr-4"><i class="fab fa-linkedin"></i></span>Eric
+        Tom</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#mainNavbar"
+        aria-controls="mainNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <div class="container navbar-nav d-flex justify-content-around">
+          <a class="nav-link" href="#section-about-me">About</a>
+          <a class="nav-link" href="#section-portfolio">Portfolio</a>
+          <a class="nav-link" href="#section-timeline">Journey</a>
+          <a class="nav-link" href="#section-skills">Skills</a>
+          <a class="nav-link" href="#section-footer">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- testing flexbox setup -->
+    <!-- <section class="test d-flex flex-column flex-lg-row bd-highlight">
+      <div class="dummy2 p-2 flex-grow-1 bd-highlight">Flex item</div>
+      <div class="dummy2 p-2 bd-highlight">Flex item</div>
+      <div class="dummy2 p-2 flex-grow-1 bd-highlight">Third flex item</div>
+    </section> -->
+
+    <!-- Main Landing Page -->
+    <section id="section-main-page" class="d-flex flex-column container-fluid my-5">
+      <div id="my-picture" class="my-5 pb-sm-5">
+        <img id="my-face" src="/portfolio/imgs/main-photo.png" />
+      </div>
+      <div id="my-name" class="">Eric Tom</div>
+      <div id="my-tagline" class="mb-4">
+        <h1 class="mt-2 mb-3">Developer meets Business</h1>
+        <!-- or Business Developer OR One stop shop: Business + Developer -->
+
+        <p>
+          Programming what users <em>actually</em> want vs. what they
+          <em>say</em> they want.
+        </p>
+        <p class="pt-1">Writing clean scalable code all while having fun.</p>
+      </div>
+      <div id="main-action-btn" class="flex-grow-1 mt-4 mb-2">
+        <a href="#section-portfolio">View Portfolio</a>
+      </div>
+    </section>
+
+    <!-- Header About Me Section -->
+    <section id="section-about-me" class="container">
+      <h1 class="pb-5">Who am I?</h1>
+      <p>
+        I am a self taught developer. Started off with Swift for iOS. However, I
+        learned the MERN stack to broaden my skills and build cross-platform web
+        applications and mobile apps. I love the feeling of finally squashing
+        that bug and can build to meet the face-paced environment and changing
+        requirements.
+      </p>
+      <p>
+        During my free time, I love to read, solve puzzles, play boardgames, and
+        watch Survior. My favorite desinations are Disneyworld and Japan.
+      </p>
+      <div id="journey-btn" class="flex-grow-1 mt-4 mb-2">
+        <a
+          type="button"
+          id="journey-btn"
+          class="btn btn-outline-secondary"
+          href="#section-timeline"
+        >
+          See the Story
+        </a>
+      </div>
+    </section>
+
+    <!-- Portfolio Cards Section -->
+    <section id="section-portfolio" class="container-fluid">
+      <h1 class="mb-4">Personal Projects</h1>
+      <div class="row justify-content-around row-cols-1 row-cols-md-2 row-cols-xl-3">
+        
+        <!-- Project 1 -->
+        <div class="col my-3">
+          <div class="card">
+            <img
+              src="../portfolio/imgs/dummy-portfolio/p1.jpg"
+              class="card-img"
+              alt="..."
+            />
+            <div id="portfolio-item-1" class="card-img-overlay">
+              <h5 class="card-title">Project 1</h5>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="dummy col my-3">
+          <div class="card">
+            <img
+              src="../portfolio/imgs/dummy-portfolio/p2.jpg"
+              class="card-img"
+              alt="..."
+            />
+            <div id="portfolio-item-2" class="card-img-overlay">
+              <h5 class="card-title">Project 2</h5>
+            </div>
+          </div>
+        </div>
+
+        <!-- TODO: Fix the picture size. This third one is larger than the other 2 in xl screen -->
+        <!-- Project 3 -->
+        <div class="dummy col my-3">
+          <div class="card">
+            <img
+              src="../portfolio/imgs/dummy-portfolio/p3.jpg"
+              class="card-img"
+              alt="..."
+            />
+            <div id="portfolio-item-3" class="card-img-overlay">
+              <h5 class="card-title">Project 3</h5>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="section-timeline" class="dummy container my-5">
+      <h1>My Journey</h1>
+      <ul id="timeline-list" class="d-flex flex-column align-content-center">
+        <!-- TODO - MAKE A VERTICAL LINE STRAIGHT DOWN THE MIDDLE FOR THE TIMELINE -->
+
+        <!-- TIMELINE ITEM #1 -->
+        <li class="timeline-item">
+          <!-- Icon -->
+          <div class="d-flex justify-content-xl-around">
+            <icon class="timeline-icon m-0">
+              <i class="fas fa-chess-board"></i>
+            </icon>
+          </div>
+          <!-- Text -->
+          <div class="timeline-text d-flex flex-column-reverse flex-xl-row justify-content-xl-center m-xl-0 mr-0">
+            <div class="timeline-year col-5 text-xl-right m-xl-0">2012</div>
+            <div class="timeline-icon-filler col-1"></div>
+            <div class="timeline-description col-8 col-xl-5 m-xl-0">
+              <h2 class="timeline-title">Java Checkers Game</h2>
+              <p class="timeline-paragraph">Created a java offline checkers game utilizing my understanding of object oriented design.</p>
+            </div>
+          </div>
+        </li>
+
+        <!-- TIMELINE ITEM #2 -->
+        <li class="timeline-item">
+          <!-- Icon -->
+          <div class="d-flex justify-content-xl-around">
+            <icon class="timeline-icon m-0">
+              <i class="fas fa-chess-board"></i>
+            </icon>
+          </div>
+          <!-- Text -->
+          <div class="timeline-text d-flex flex-column-reverse flex-xl-row-reverse justify-content-xl-center m-xl-0">
+            <div class="timeline-year col-5 text-xl-left m-xl-0">2012</div>
+            <div class="timeline-icon-filler col-1"></div>
+            <div class="timeline-description text-xl-right col-8 col-xl-5 m-xl-0">
+              <h2 class="timeline-title">Program Designer</h2>
+              <p class="timeline-paragraph">Worked as a BA desiging internal tools to help increase efficiency, accuracy and compliance of our work management processes.</p>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="section-skills" class="dummy container">
+      <h1>Skills</h1>
+      <h2>Languages & Frameworks</h2>
+
+      <!-- TODO: Make all images a certain size and then put in here -->
+      <ul id="languages-list" class="d-flex flex-row flex-wrap justify-content-around align-items-center">
+        <li class="col-6"><img src="imgs/languages/swift.jpeg" class="img-fluid"></li>
+        <li class="col-6"><img src="imgs/languages/python.jpeg" class="img-fluid"></li>
+        <li class="col-3"><img src="imgs/languages/mongodb.jpeg" class="img-fluid"></li>
+        <li class="col-3"><img src="imgs/languages/expressjs.jpeg" class="img-fluid"></li>
+        <li class="col-3"><img src="imgs/languages/react.jpeg" class="img-fluid"></li>
+        <li class="col-3"><img src="imgs/languages/nodejs.jpeg" class="img-fluid"></li>
+        <li class="col-3"><img src="imgs/languages/js.jpeg" class="img-fluid"></li>
+        <li class="col-3"><img src="imgs/languages/html.jpeg" class="img-fluid"></li>
+        
+        <li class="col-3"><img src="imgs/languages/css.jpeg" class="img-fluid"></li>
+        <li class="col-3"><img src="imgs/languages/bs4.jpeg" class="img-fluid"></li>
+        <!-- TODO: Add JQuery picture -->
+        <li class="col-3"><img src="imgs/languages/jquery.png" class="img-fluid"></li>
+      </ul>
+
+      <h2>Tools</h2>
+      <ul id="tools-list" class="d-flex flex-row flex-wrap justify-content-around align-items-center">
+        <!-- TODO: Add tools picture -->
+        <li class="col-4"><img src="imgs/tools/git.png" class="img-fluid"></li>
+        <li class="col-4"><img src="imgs/tools/jira.jpeg" class="img-fluid"></li>
+        <li class="col-4"><img src="imgs/tools/vs-code.jpeg" class="img-fluid"></li>
+        <li class="col-4"><img src="imgs/tools/sourcetree.png" class="img-fluid"></li>
+        <li class="col-4"><img src="imgs/tools/bash.jpeg" class="img-fluid"></li>
+      </ul>
+      <h2>Additional Skills</h2>
+      
+      <!-- <ul id="additional-skills-list" class="d-flex flex-wrap flex-rowjustify-content-center"> -->
+        <!-- TODO: Need to fix spacing on this -->
+        <ul id="additional-skills-list" class="d-flex row justify-content-center">
+        <li class="col-12 col-md-6 col-xl-4"><i class="far fa-edit"></i>  Design Documentation</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="far fa-lightbulb"></i>  Requirement Gathering</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="fas fa-laptop-code"></i>  SDLC</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="fas fa-recycle"></i>  Agile Methodology</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="fab fa-trello"></i>  Kanban</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="fas fa-users"></i>  Facilitation</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="fas fa-users"></i>  Facilitation</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="far fa-chart-bar"></i>  Data Analytics</li>
+        <li class="col-12 col-md-6 col-xl-4"><i class="fas fa-project-diagram"></i>  Process Flow Diagrams</li>
+        
+      </ul>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="section-footer" class="my-5 text-center">
+      <p class="mb-2">Contact Me</p>
+      <ul class="list-inline">
+        <li id="footer-git" class="list-inline-item"><a href="https://github.com/etgonehomie"
+          target="_blank"><i class="fab fa-github"></i></a></li>
+        <li id="footer-linkedin" class="list-inline-item"><a href="https://www.linkedin.com/in/eric-tom"
+          target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+        <li id="footer-email" class="list-inline-item"><a href="mailto:emtom22@gmail.com?subject=Job%20Opportunity%20Chat"><i class="far fa-envelope"></i></a></li>
+      </ul>
+    </footer>
+  </body>
+  <!-- JS Code for BS4 -->
+  <script
+    src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"
+  ></script>
+</html>
