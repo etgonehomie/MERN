@@ -14,6 +14,10 @@ app.listen(portNumber, () => {
 });
 
 // 3. This function is called for ANY income request to the server. An incoming request is for example, going to a specific webpage, or clicking a button to navigate somewhere.
-app.use(() => {
+// The `req` request is the incoming request, basically th e http request in our case
+// The `res` response is what the server passes back to the client to utilize
+app.use((req, res) => {
   console.log("Request made to server");
+  // console.dir(req);
+  res.send(`Hello, server ${portNumber} received your request`);
 });
