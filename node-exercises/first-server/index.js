@@ -26,8 +26,11 @@ app.get("/", (req, res) => {
   res.send("You are at the root (aka home) page.");
 });
 
-app.get("/timeline/:year", (req, res) => {
-  res.send("You are at the timeline page.");
+// NOTE: Can add a variable to the GET route by using :
+// The string after colon and before a slash will be the json parameter name that the variable can be deconstructed and accessed by.
+app.get("/timeline/:year/:month", (req, res) => {
+  const { year, month } = req.params;
+  res.send(`You are at the timeline page for year ${year} and month ${month}.`);
 });
 
 app.get("/portfolio", (req, res) => {
