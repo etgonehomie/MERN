@@ -26,6 +26,10 @@ app.get("/", (req, res) => {
   res.send("You are at the root (aka home) page.");
 });
 
+app.get("/portfolio", (req, res) => {
+  res.send("You are at the portfolio page.");
+});
+
 // NOTE: Can add a variable to the GET route by using :
 // The string after colon and before a slash will be the json parameter name that the variable can be deconstructed and accessed by.
 app.get("/timeline/:year/:month", (req, res) => {
@@ -33,10 +37,14 @@ app.get("/timeline/:year/:month", (req, res) => {
   res.send(`You are at the timeline page for year ${year} and month ${month}.`);
 });
 
-app.get("/portfolio", (req, res) => {
-  res.send("You are at the portfolio page.");
+// NOTE: Can add query strings and utilize them
+// The `queryString` is the parameter in the URL that comes after the ? and before the =
+// For example, the URL for the below would be
+// www.example.com/find?queryString=findThisTerm
+app.get("/find", (req, res) => {
+  const { queryString } = req.query;
+  res.send(`You searched for ${queryString}`);
 });
-
 /**
  * 4. Routing POST requests (aka url paths) to different logic branches
  */
