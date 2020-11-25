@@ -40,10 +40,10 @@ app.get("/timeline/:year/:month", (req, res) => {
 // NOTE: Can add query strings and utilize them
 // The `queryString` is the parameter in the URL that comes after the ? and before the =
 // For example, the URL for the below would be
-// www.example.com/find?queryString=findThisTerm
+// www.example.com/find?queryString=findThisTerm&onPage=SillyPage
 app.get("/find", (req, res) => {
-  const { queryString } = req.query;
-  res.send(`You searched for ${queryString}`);
+  const { queryString, onPage } = req.query;
+  res.send(`You searched for ${queryString} on page ${onPage}`);
 });
 /**
  * 4. Routing POST requests (aka url paths) to different logic branches
