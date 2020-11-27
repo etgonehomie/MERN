@@ -53,6 +53,12 @@ app.get("/json/get?", (req, res) => {
   res.redirect(`/json/${randomNumber}`);
 });
 
+// # 9 - Serving static files for the browser to use
+// For example, after you serve an EJS file, you want to serve JS, CSS files that when the user interacts with the HTML, it will draw logic and styling from the statically served JS/CSS files
+// This will serve all the files within the public directory
+// Can now reference any of the files within the public folder directly in any ejs/html file like I normally would.
+app.use(express.static(path.join(__dirname, "/public")));
+
 // #9 Default for fall through
 app.get("/*", (req, res) => {
   res.render("error");
