@@ -3,19 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JSON for ID: <%=jsonData.index%></title>
+    <title>JSON for ID: <%=index%></title>
   </head>
   <body>
-    <h1>Data for <%=jsonData.name.first%> <%=jsonData.name.last%></h1>
-    <h2>ID# <%=jsonData._id%></h2>
-    <img src="<%=jsonData.picture%>" alt="random picture" />
+    <h1>Data for <%=name.first%> <%=name.last%></h1>
+    <h2>ID# <%=_id%></h2>
+    <img src="<%=picture%>" alt="random picture" />
     <h2>Contact Information</h2>
     <ul>
-      <li>::Company:: <%=jsonData.company%></li>
-      <li>::Email:: <%=jsonData.email%></li>
-      <li>::Phone:: <%=jsonData.phone%></li>
-      <li>::Address:: <%=jsonData.address%></li>
+      <li>::Company:: <%=company%></li>
+      <li>::Email:: <%=email%></li>
+      <li>::Phone:: <%=phone%></li>
+      <li>::Address:: <%=address%></li>
     </ul>
+    <% if (friends.length > 0) { %>
+    <h2>Friend List</h2>
+    <ul>
+      <%for(friend of friends) { %>
+      <li>Friend <%= friend.id %>: <%= friend.name %></li>
+
+      <%}%>
+    </ul>
+    <% } %>
   </body>
   <form action="">
     <button>Get Random ID</button>

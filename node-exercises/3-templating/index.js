@@ -40,10 +40,11 @@ app.get("/looping", (req, res) => {
 });
 
 // #8 Use a data model to utilize in the ejs files
+// Spreading the data so we dont have to do jsonData.* to acces the vars within the object. we can just access the var by * directly.
 const jsonData = require("./models/data.json");
 app.get("/json/:index", (req, res) => {
   const { index } = req.params;
-  res.render("json", { jsonData: jsonData[index] });
+  res.render("json", { ...jsonData[index] });
 });
 
 app.get("/json/get?", (req, res) => {

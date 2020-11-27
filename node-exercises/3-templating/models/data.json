@@ -22,20 +22,7 @@
     "longitude": "14.208159",
     "tags": ["commodo", "ut", "Lorem", "cupidatat", "dolor"],
     "range": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-    "friends": [
-      {
-        "id": 0,
-        "name": "Odessa Brady"
-      },
-      {
-        "id": 1,
-        "name": "Morrow Nicholson"
-      },
-      {
-        "id": 2,
-        "name": "Donaldson Marsh"
-      }
-    ],
+    "friends": [],
     "greeting": "Hello, Snider! You have 7 unread messages.",
     "favoriteFruit": "banana"
   },
