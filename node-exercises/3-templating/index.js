@@ -1,3 +1,4 @@
+const { json } = require("express");
 const express = require("express");
 const path = require("path");
 // #1 Set up express app
@@ -38,12 +39,25 @@ app.get("/looping", (req, res) => {
   res.render("looping", { array });
 });
 
-// #8 Default for fall through
+// #8 Use a data model to utilize in the ejs files
+const jsonData = require("./models/data.json");
+app.get("/json/:index", (req, res) => {
+  const { index } = req.params;
+  res.render("json", { jsonData: jsonData[index] });
+});
+
+app.get("/json/get?", (req, res) => {
+  const randomNumber = Math.floor(Math.random() * (jsonData.length - 1));
+  console.log(`random number is: ${randomNumber}`);
+  res.redirect(`/json/${randomNumber}`);
+});
+
+// #9 Default for fall through
 app.get("/*", (req, res) => {
   res.render("error");
 });
 
-// #5 Use EJS tags within the ejs files to run JS
+// Use EJS tags within the ejs files to run JS
 // https://ejs.co/#install
 /** EJS Tags
  * Starting Tags
