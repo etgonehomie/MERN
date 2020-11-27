@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Numbers Array</title>
+  </head>
+  <body>
+    <h1>`You are looping through <%=array.count%> numbers</h1>
+
+    <ul>
+      <% array.forEach(num => { %> <% if (num % 2 === 0) { %>
+      <li>EVEN: <%=num%></li>
+      <% } else { %>
+      <li>odd: <%=num%></li>
+      <% } %> <% }) %>
+    </ul>
+  </body>
+</html>

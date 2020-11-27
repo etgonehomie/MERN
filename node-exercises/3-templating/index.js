@@ -17,3 +17,45 @@ app.set("views", path.join(__dirname, "/views"));
 app.get("/", (req, res) => {
   res.render("home");
 });
+
+// #5 Can pass in key,value pairs as send param in the render function for ejs file to utilize
+app.get("/rand", (req, res) => {
+  const item = "book";
+  const price = 4.59;
+  res.render("rand", { itemName: item, itemPrice: price });
+});
+
+// #6 Can destructure request params to utilize in the repsonse (or for querying data)
+// Parameters from request are anything that start with a '/:'
+app.get("/item/:itemType", (req, res) => {
+  const { itemType } = req.params;
+  res.render("item", { itemType });
+});
+
+// #7 Conditionals and Looping in EJS
+app.get("/looping", (req, res) => {
+  const array = [1, 2, 3, 10, 25, 3, 5, 30, 923, 9, 82, 127, 18, 52, , 63];
+  res.render("looping", { array });
+});
+
+// #8 Default for fall through
+app.get("/*", (req, res) => {
+  res.render("error");
+});
+
+// #5 Use EJS tags within the ejs files to run JS
+// https://ejs.co/#install
+/** EJS Tags
+ * Starting Tags
+  <% 'Scriptlet' tag, for control-flow, no output
+  <%_ ‘Whitespace Slurping’ Scriptlet tag, strips all whitespace before it
+  <%= Outputs the value into the template (HTML escaped)
+  <%- Outputs the unescaped value into the template
+  <%# Comment tag, no execution, no output
+  <%% Outputs a literal '<%'
+
+ * Ending Tags
+  %> Plain ending tag
+  -%> Trim-mode ('newline slurp') tag, trims following newline
+  _%> ‘Whitespace Slurping’ ending tag, removes all whitespace after it
+ */
