@@ -6,6 +6,19 @@
     <title>GET/POST</title>
   </head>
   <body>
-    <form action="/tacos" method="get"></form>
+    <h2>GET REQUEST</h2>
+    <form action="http://localhost:3000/items" method="get">
+      <label for="itemName">Item</label>
+      <input type="text" name="itemName" id="itemName" />
+      <button>Show Items</button>
+    </form>
+    <h2>GET REQUEST</h2>
+    <form action="http://localhost:3000/items" method="get">
+      <label for="itemName">Item: </label>
+      <input type="text" name="itemName" id="itemName" />
+      <label for="quantity">Amount: </label>
+      <input type="dropdown" name="quantity id="quantity">
+      <button>Create Inventory</button>
+    </form>
   </body>
 </html>
