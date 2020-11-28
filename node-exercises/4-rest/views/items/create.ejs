@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Create New Item</h1>
+    <form action="http://localhost:3000/items" method="POST">
+      <label for="itemName">Item: </label>
+      <input type="text" name="itemName" id="itemName" />
+      <label for="quantity">Quantity: </label>
+      <input type="dropdown" name="quantity" id="quantity" />
+      <label for="price">Price: </label>
+      <input type="text" name="price" id="price" />
+      <button>Create Inventory</button>
+    </form>
+  </body>
+</html>

@@ -7,7 +7,11 @@
   </head>
   <body>
     <h1>Item: <%= name %></h1>
-    <h2>Price: $<%= unitPrice %></h2>
-    <h2>Quantity: <%= stock %></h2>
+    <h2>
+      You have <%= stock %> in stock at a price of $<%= unitPrice %> each.
+    </h2>
+    <form action="http://localhost:3000/items/<%= id %>/edit" method="GET">
+      <button>Update <%= name %></button>
+    </form>
   </body>
 </html>

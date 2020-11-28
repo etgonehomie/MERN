@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Items Page</title>
+  </head>
+  <body>
+    <% if (items.length === 0) { %>
+    <h1>Add Items to your list!</h1>
+    <% } else { %>
+    <h1>Your Items:</h1>
+    <ul>
+      <% for(item of items) { %>
+      <li>
+        <%=`[${item.stock}] ${item.name} @ $${item.unitPrice}/unit` %>
+        <a href="/items/<%= item.id %>/edit">Update</a>
+        <a href="/items/<%= item.id %>/delete">Remove</a>
+      </li>
+      <% } %>
+    </ul>
+    <% } %>
+
+    <form action="http://localhost:3000/items/new" method="GET">
+      <button>New Item</button>
+    </form>
+  </body>
+</html>
