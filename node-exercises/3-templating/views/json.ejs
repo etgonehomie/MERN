@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JSON for ID: <%=index%></title>
-  </head>
+  <%- include ('partials/header') %>
   <body>
+    <%- include('partials/navbar')%>
     <h1>Data for <%=name.first%> <%=name.last%></h1>
     <h2>ID# <%=_id%></h2>
     <img src="<%=picture%>" alt="random picture" />
@@ -29,4 +26,5 @@
   <form action="">
     <button>Get Random ID</button>
   </form>
+  <%- include('partials/bs4-js') %>
 </html>

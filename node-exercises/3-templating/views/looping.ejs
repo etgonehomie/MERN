@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Numbers Array</title>
-  </head>
+  <%- include ('partials/header') %>
   <body>
+    <%- include('partials/navbar')%>
     <h1>`You are looping through <%=array.count%> numbers</h1>
 
     <ul>
@@ -16,4 +13,5 @@
       <% } %> <% }) %>
     </ul>
   </body>
+  <%- include('partials/bs4-js') %>
 </html>
