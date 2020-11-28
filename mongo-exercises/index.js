@@ -26,15 +26,15 @@ mongoose
  * @param customerInformation: if it was a customer purchase, details about the customer
  */
 const orderSchema = new mongoose.Schema({
-    shopID: String,
-    date: Date,
-    totalPrice: Number,
-    type: String,
-    customerPurchaseIds: [String],
-    sourcingPurchaseIds: [String],
-    sourcingInformation: sourcingCompanySchema,
-    customerInformation: customerSchema,
-    comments: String,
+  shopID: String,
+  date: Date,
+  totalPrice: Number,
+  type: String,
+  customerPurchaseIds: [String],
+  sourcingPurchaseIds: [String],
+  sourcingInformation: sourcingCompanySchema,
+  customerInformation: customerSchema,
+  comments: String,
 });
 
 /**
@@ -46,12 +46,12 @@ const orderSchema = new mongoose.Schema({
  * @param totalPrice:
  */
 const basePurchaseSchema = new mongoose.Schema({
-    itemID: String,
-    date: Date,
-    quantity: Number,
-    unitPrice: Number,
-    totalPrice: Number,
-})
+  itemID: String,
+  date: Date,
+  quantity: Number,
+  unitPrice: Number,
+  totalPrice: Number,
+});
 
 /**
  * Defines the customer purchases that deplete the business inventory
@@ -61,11 +61,11 @@ const basePurchaseSchema = new mongoose.Schema({
  * @param customerID: Defines the unique customer ID
  */
 const customerPurchaseSchema = new mongoose.Schema({
-    purchaseInformation: basePurchaseSchema
-    netRevenue: Number,
-    purchasePlatform: String,
-    shopID: String,
-    customerID: String,
+  purchaseInformation: basePurchaseSchema,
+  netRevenue: Number,
+  purchasePlatform: String,
+  shopID: String,
+  customerID: String,
 });
 
 /**
@@ -75,38 +75,38 @@ const customerPurchaseSchema = new mongoose.Schema({
  * @param sourcingID: ID of the company you purchased this item from
  */
 const sourcingPurchaseSchema = new mongoose.Schema({
-    purchaseInformation: basePurchaseSchema,
-    remainingQuantity: Number,
-    isAnyQuantityRemaining: Boolean,
-    sourcingID: String,
-})
+  purchaseInformation: basePurchaseSchema,
+  remainingQuantity: Number,
+  isAnyQuantityRemaining: Boolean,
+  sourcingID: String,
+});
 
 const customerInformation = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    age: Number,
-    gender: String,
-    ethnicity: String,
-    nationality: String,
-    country: String,
-    state: String,
-    city: String,
-    neighborhood: String,
+  firstName: String,
+  lastName: String,
+  age: Number,
+  gender: String,
+  ethnicity: String,
+  nationality: String,
+  country: String,
+  state: String,
+  city: String,
+  neighborhood: String,
 });
 
 const sourcingCompanySchema = new mongoose.Schema({
-    company: String,
-    contactName: String,
-    email: String,
-    phoneNumber: String,
-    street1: String,
-    street2: String,
-    city: String,
-    state: String,
-    country: String,
-    zip: String,
-    website: String,
-    comments: String,
+  company: String,
+  contactName: String,
+  email: String,
+  phoneNumber: String,
+  street1: String,
+  street2: String,
+  city: String,
+  state: String,
+  country: String,
+  zip: String,
+  website: String,
+  comments: String,
 });
 
 /**
@@ -133,14 +133,14 @@ const shopSchema = new mongoose.Schema({
  * @param shippingCost: The cost of shipping if `freeShippingSpendThreshold` is not met
  */
 const itemsInShopSchema = new mongoose.Schema({
-    itemID: String,
-    shopID: String,
-    url: String,
-    unitSellPrice: Number,
-    discountPercent: Number,
-    isAlwaysFreeShipping: Boolean,
-    freeShippingSpendThreshold: Number,
-    shippingCost: Number
+  itemID: String,
+  shopID: String,
+  url: String,
+  unitSellPrice: Number,
+  discountPercent: Number,
+  isAlwaysFreeShipping: Boolean,
+  freeShippingSpendThreshold: Number,
+  shippingCost: Number,
 });
 
 const itemSchema = new mongoose.Schema({
@@ -161,11 +161,11 @@ const itemSchema = new mongoose.Schema({
  * @param isLandingPicture: Defines what picture is the first picture the user sees for a given item
  */
 const pictureSchema = new mongoose.Schema({
-    isLandingPicture: Boolean,
-    name: String,
-    thumbnail: String,
-    small: String,
-    medium: String,
-    large: String,
-    xlarge: String,
+  isLandingPicture: Boolean,
+  name: String,
+  thumbnail: String,
+  small: String,
+  medium: String,
+  large: String,
+  xlarge: String,
 });
