@@ -16,22 +16,23 @@ mongoose
 
 /**
  * This defines the aggregate order that was made by the seller or the consumer. An order consists of one or many purchases
- * @param shopID: Defines what shop customer purchased from
+ * @param shopId: Defines what shop customer purchased from
  * @param date: date and time of the order
  * @param totalPrice: total cost of order
  * @param orderType: an enum that defines if it was a customer or seller purchase
  * @param customerPurchaseIds: the purchase ids that define what item was purchased.
  * @param customerPurchaseIds: the purchase ids that define what item was purchased.
+ *  * TODO: May not need the sourcing/customerInfo params. Might be redundant
  * @param sourcingInformation: if it was a seller purchase, details about the sourcing company
  * @param customerInformation: if it was a customer purchase, details about the customer
  */
 const orderSchema = new mongoose.Schema({
-  shopID: String,
+  shopId: ObjectID,
   date: Date,
   totalPrice: Number,
   type: String,
-  customerPurchaseIds: [String],
-  sourcingPurchaseIds: [String],
+  customerPurchaseIds: [ObjectID],
+  sourcingPurchaseIds: [ObjectID],
   sourcingInformation: sourcingCompanySchema,
   customerInformation: customerSchema,
   comments: String,
@@ -39,14 +40,14 @@ const orderSchema = new mongoose.Schema({
 
 /**
  * This defines an individual purchase. A purchase can only be one item and is always aggregated into an order.
- * @param itemID: Defines the item that was purchased
+ * @param itemId: Defines the item that was purchased
  * @param date: Date and time that the item was purchased
  * @param quantity:
  * @param unitPrice:
  * @param totalPrice:
  */
 const basePurchaseSchema = new mongoose.Schema({
-  itemID: String,
+  itemId: ObjectID,
   date: Date,
   quantity: Number,
   unitPrice: Number,
@@ -57,28 +58,28 @@ const basePurchaseSchema = new mongoose.Schema({
  * Defines the customer purchases that deplete the business inventory
  * @param netRevenue: Defines the income made (revenue - expenses)
  * @param purchasePlatform: Enum that defines whether purchased on phone, tablet, or desktop based on screen size.
- * @param shopID: Defines what shop customer purchased from (Etsy, Ebay, etc.)
- * @param customerID: Defines the unique customer ID
+ * @param shopId: Defines what shop customer purchased from (Etsy, Ebay, etc.)
+ * @param customerId: Defines the unique customer Id
  */
 const customerPurchaseSchema = new mongoose.Schema({
   purchaseInformation: basePurchaseSchema,
   netRevenue: Number,
   purchasePlatform: String,
-  shopID: String,
-  customerID: String,
+  shopId: ObjectID,
+  customerId: ObjectID,
 });
 
 /**
  * Defines the sourcing purchase details used to stock up on business inventory
  * @param remainingQuantity: quantity of the item remaining after customers purchased. Used for FIFO calculation
  * @param isAnyQuantityRemaining: to easily filter whether used in net revenue calulation or not
- * @param sourcingID: ID of the company you purchased this item from
+ * @param sourcingId: Id of the company you purchased this item from
  */
 const sourcingPurchaseSchema = new mongoose.Schema({
   purchaseInformation: basePurchaseSchema,
   remainingQuantity: Number,
   isAnyQuantityRemaining: Boolean,
-  sourcingID: String,
+  sourcingId: ObjectID,
 });
 
 /**
@@ -126,13 +127,13 @@ const sourcingCompanySchema = new mongoose.Schema({
 const shopSchema = new mongoose.Schema({
   name: String,
   url: String,
-  itemIds: [String],
+  itemIds: [ObjectID],
 });
 
 /**
  * Defines the item details at a particular shop
- * @param itemID:
- * @param shopID:
+ * @param itemId:
+ * @param shopId:
  * @param title: Defaults to the name of the item, but can be overwritten for each shop the item is sold at
  * @param url: URL to direct user to the place where he can modify inventory for that specific shop
  * @param unitSellPrice: Price per item, without the discount applied.
@@ -144,8 +145,8 @@ const shopSchema = new mongoose.Schema({
  * @param restockQuantityThreshold: Defines when the program will automatically increase the item stock at this store, if there is enough totalQuantity to do so.
  */
 const itemsInShopSchema = new mongoose.Schema({
-  itemID: String,
-  shopID: String,
+  itemId: ObjectID,
+  shopId: ObjectID,
   title: String,
   url: String,
   unitSellPrice: Number,
@@ -175,7 +176,7 @@ const itemSchema = new mongoose.Schema({
   name: String,
   tagline: String,
   description: String,
-  shopIds: [String],
+  shopIds: [ObjectID],
   averageUnitCost: Number,
   totalQuantityInStock: Number,
   restockBufferQuantity: Number,
