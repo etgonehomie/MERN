@@ -3,17 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GET/POST</title>
+    <title>Document</title>
   </head>
   <body>
-    <h2>GET REQUEST</h2>
-    <form action="http://localhost:3000/items" method="get">
-      <label for="itemName">Item</label>
-      <input type="text" name="itemName" id="itemName" />
-      <button>Show Items</button>
-    </form>
-    <h2>POST REQUEST</h2>
-    <form action="http://localhost:3000/items" method="post">
+    <h1>Create New Item</h1>
+    <form action="http://localhost:3000/items" method="POST">
       <label for="itemName">Item: </label>
       <input type="text" name="itemName" id="itemName" />
       <label for="quantity">Quantity: </label>
