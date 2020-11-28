@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 // #1 Set up express app
 const app = express();
-app.listen(3000, () => {
+app.listen("3000", () => {
   console.log("Listening on port 3000");
 });
 
@@ -42,15 +42,17 @@ app.get("/looping", (req, res) => {
 // #8 Use a data model to utilize in the ejs files
 // Spreading the data so we dont have to do jsonData.* to acces the vars within the object. we can just access the var by * directly.
 const jsonData = require("./models/data.json");
-app.get("/json/:index", (req, res) => {
-  const { index } = req.params;
-  res.render("json", { ...jsonData[index] });
-});
 
-app.get("/json/get?", (req, res) => {
+app.get("/json", (req, res) => {
+  console.log("got response from get json");
   const randomNumber = Math.floor(Math.random() * (jsonData.length - 1));
   console.log(`random number is: ${randomNumber}`);
   res.redirect(`/json/${randomNumber}`);
+});
+
+app.get("/json/:index", (req, res) => {
+  const { index } = req.params;
+  res.render("json", { ...jsonData[index] });
 });
 
 // # 9 - Serving static files for the browser to use
