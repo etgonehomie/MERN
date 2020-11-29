@@ -15,159 +15,45 @@ mongoose
     console.log(`Connection failed with error: ${e}`);
   });
 
-/**
- * This defines the aggregate order that was made by the seller or the consumer. An order consists of one or many purchases
- * @param shopId: Defines what shop customer purchased from
- * @param date: date and time of the order
- * @param totalPrice: total cost of order
- * @param orderType: an enum that defines if it was a customer or seller purchase
- * @param customerPurchaseIds: the purchase ids that define what item was purchased.
- * @param customerPurchaseIds: the purchase ids that define what item was purchased.
- * TODO: May not need the sourcing/customerInfo params
- * @param sourcingInformation: if it was a seller purchase, details about the sourcing company
- * @param customerInformation: if it was a customer purchase, details about the customer
- */
-const orderSchema = new mongoose.Schema({
-  shopId: ObjectID,
-  date: Date,
-  totalPrice: Number,
-  type: String,
-  customerPurchaseIds: [ObjectID],
-  sourcingPurchaseIds: [ObjectID],
-  sourcingInformation: sourcingCompanySchema,
-  customerInformation: customerSchema,
-  comments: String,
-});
-
-/**
- * This defines an individual purchase. A purchase can only be one item and is always aggregated into an order.
- * @param itemId: Defines the item that was purchased
- * @param date: Date and time that the item was purchased
- * @param quantity:
- * @param unitPrice:
- * @param totalPrice:
- */
-const basePurchaseSchema = new mongoose.Schema({
-  itemId: ObjectID,
-  date: Date,
-  quantity: Number,
-  unitPrice: Number,
-  totalPrice: Number,
-});
-
-/**
- * Defines the customer purchases that deplete the business inventory
- * @param netRevenue: Defines the income made (revenue - expenses)
- * @param purchasePlatform: Enum that defines whether purchased on phone, tablet, or desktop based on screen size.
- * @param shopId: Defines what shop customer purchased from (Etsy, Ebay, etc.)
- * @param customerId: Defines the unique customer ID
- */
-const customerPurchaseSchema = new mongoose.Schema({
-  purchaseInformation: basePurchaseSchema,
-  netRevenue: Number,
-  purchasePlatform: String,
-  shopId: ObjectID,
-  customerId: ObjectID,
-});
-
-/**
- * Defines the sourcing purchase details used to stock up on business inventory
- * @param remainingQuantity: quantity of the item remaining after customers purchased. Used for FIFO calculation
- * @param isAnyQuantityRemaining: to easily filter whether used in net revenue calulation or not
- * @param sourcingId: ID of the company you purchased this item from
- */
-const sourcingPurchaseSchema = new mongoose.Schema({
-  purchaseInformation: basePurchaseSchema,
-  remainingQuantity: Number,
-  isAnyQuantityRemaining: Boolean,
-  sourcingId: ObjectID,
-});
-
-const customerInformation = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  age: Number,
-  gender: String,
-  ethnicity: String,
-  nationality: String,
-  country: String,
-  state: String,
-  city: String,
-  neighborhood: String,
-});
-
-const sourcingCompanySchema = new mongoose.Schema({
-  company: String,
-  contactName: String,
-  email: String,
-  phoneNumber: String,
-  street1: String,
-  street2: String,
-  city: String,
-  state: String,
-  country: String,
-  zip: String,
-  website: String,
-  comments: String,
-});
-
-/**
- * Shop names are: FB Marketplace, Offerup, Craigslist, Etsy, Ebay, Amazon
- */
-/**
- * @param name: Enum of shops that the application supports
- * @param url: URL to the page where you can add new items to your store
- * @param itemIds: list of item Ids that you are selling at the given shop
- */
-const shopSchema = new mongoose.Schema({
-  name: String,
-  url: String,
-  itemIds: [ObjectID],
-});
-
-/**
- * Defines the item details at a particular shop
- * @param url: URL to direct user to the place where he can modify inventory for that specific shop
- * @param unitSellPrice: Price per item, without the discount applied.
- * @param discountPercent: Stored in decimal
- * @param isAlwaysFreeShipping: Defines whether the item always has free shipping or not
- * @param freeShippingSpendThreshold: Defines how much customer has to purchase before free shipping
- * @param shippingCost: The cost of shipping if `freeShippingSpendThreshold` is not met
- */
-const itemsInShopSchema = new mongoose.Schema({
-  itemId: ObjectID,
-  shopId: ObjectID,
-  url: String,
-  unitSellPrice: Number,
-  discountPercent: Number,
-  isAlwaysFreeShipping: Boolean,
-  freeShippingSpendThreshold: Number,
-  shippingCost: Number,
-});
-
+// #2 Create the structure for your data
 const itemSchema = new mongoose.Schema({
   name: String,
-  tagline: String,
-  description: String,
-  shopIds: [ObjectID],
-  averageUnitCost: Number,
-  totalQuantityInStock: Number,
-  totalQuantitySold: Number,
-  hasAutoRebuy: Boolean,
-  autoRebuyThreshold: Number,
-  pictures: [pictureSchema],
+  quantity: Number,
+  price: Number,
+  shops: [String],
+  pictures: [String],
 });
 
-/**
- * Defines the different picture sizes
- * @param isLandingPicture: Defines what picture is the first picture the user sees for a given item
- */
-const pictureSchema = new mongoose.Schema({
-  isLandingPicture: Boolean,
-  name: String,
-  thumbnail: String,
-  small: String,
-  medium: String,
-  large: String,
-  xlarge: String,
+// #3 Actually create the datamodel. The name of the model should be Singular and Uppercase
+// Monoose creates a colleciton with the name by lowercasing and plurarizing the name.
+// In this example the collection would be `items`
+const Item = mongoose.model("Item", itemSchema);
+
+// #4 Create new entries in the db collection by doing...
+// A) create an new instance of the model
+const phone = new Item({
+  name: "iPhone 8",
+  quantity: 1,
+  price: 400,
+  shops: ["FB"],
 });
+
+// B) save that instance into the actual collection in the db
+phone.save();
+
+// This is a way to make multiple entries as well as saves it to the database
+// Only do this once or else every time I run the app it will create this.
+// Item.insertMany([
+//   { name: "Google Home", quantity: 3, price: 30, shops: ["FB", "Craigslist"] },
+//   { name: "Keyboard", quantity: 1, price: 100, shops: ["FB"] },
+//   { name: "Dishes", quantity: 1, price: 10, shops: ["Etsy"] },
+//   { name: "Earphones", quantity: 2, price: 30, shops: ["Ebay", "Craigslist"] },
+//   { name: "Books", quantity: 40, price: 20, shops: ["Amazon", "Ebay"] },
+// ])
+//   .then((data) => {
+//     console.log("It worked");
+//     console.log(`Data is ${data}`);
+//   })
+//   .catch((err) => {
+//     console.log(`error of type: ${err}`);
+//   });
