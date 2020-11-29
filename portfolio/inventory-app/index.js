@@ -163,6 +163,7 @@ const itemsInShopSchema = new mongoose.Schema({
  * @param name: Item title to be displayed on the header
  * @param tagline: Secondary title
  * @param description:
+ * @param tags: A way to tag the items to use for filtering and sorting
  * @param shopIds: Defines what shops this item is being sold at for the business
  * @param averageUnitCost:
  * @param totalQuantityInStock:
@@ -176,6 +177,7 @@ const itemSchema = new mongoose.Schema({
   name: String,
   tagline: String,
   description: String,
+  tags: [String],
   shopIds: [ObjectID],
   averageUnitCost: Number,
   totalQuantityInStock: Number,
@@ -198,4 +200,22 @@ const pictureSchema = new mongoose.Schema({
   medium: String,
   large: String,
   xlarge: String,
+});
+
+/**
+ * @param paidTier: defines what tier the user is subscribed to. 0 = Free tier, 1 = base, 2 = premium
+ * @param tagLimit: Limit of different tags that user can have
+ */
+// TODO: Define the limits for each tier (Free, base, premium)
+const userDataSchema = new mongoose.Schema({
+  paidTier: Number,
+  tagLimit: Number,
+  numberOfPicturesPerItem: Number,
+  numberOfShops: Number,
+  numberOfItems: Number,
+  isAutoRestock: Boolean,
+  canViewCustomerData: Boolean,
+  canViewSourcingData: Boolean,
+  hasAdvanceFiltering: Boolean,
+  hasBasicFiltering: Boolean,
 });
