@@ -20,8 +20,8 @@ mongoose
  * @param date: date and time of the order
  * @param totalPrice: total cost of order
  * @param orderType: an enum that defines if it was a customer or seller purchase
- * @param customerPurchaseIds: the purchase ids that define what item was purchased.
- * @param customerPurchaseIds: the purchase ids that define what item was purchased.
+ * @param customerPurchaseIds: the purchase ids that define what product was purchased.
+ * @param customerPurchaseIds: the purchase ids that define what product was purchased.
  *  * TODO: May not need the sourcing/customerInfo params. Might be redundant
  * @param sourcingInformation: if it was a seller purchase, details about the sourcing company
  * @param customerInformation: if it was a customer purchase, details about the customer
@@ -39,15 +39,15 @@ const orderSchema = new mongoose.Schema({
 });
 
 /**
- * This defines an individual purchase. A purchase can only be one item and is always aggregated into an order.
- * @param itemId: Defines the item that was purchased
- * @param date: Date and time that the item was purchased
+ * This defines an individual purchase. A purchase can only be one product and is always aggregated into an order.
+ * @param productId: Defines the product that was purchased
+ * @param date: Date and time that the product was purchased
  * @param quantity:
  * @param unitPrice:
  * @param totalPrice:
  */
 const basePurchaseSchema = new mongoose.Schema({
-  itemId: ObjectID,
+  productId: ObjectID,
   date: Date,
   quantity: Number,
   unitPrice: Number,
@@ -71,9 +71,9 @@ const customerPurchaseSchema = new mongoose.Schema({
 
 /**
  * Defines the sourcing purchase details used to stock up on business inventory
- * @param remainingQuantity: quantity of the item remaining after customers purchased. Used for FIFO calculation
+ * @param remainingQuantity: quantity of the product remaining after customers purchased. Used for FIFO calculation
  * @param isAnyQuantityRemaining: to easily filter whether used in net revenue calulation or not
- * @param sourcingId: Id of the company you purchased this item from
+ * @param sourcingId: Id of the company you purchased this product from
  */
 const sourcingPurchaseSchema = new mongoose.Schema({
   purchaseInformation: basePurchaseSchema,
@@ -83,7 +83,7 @@ const sourcingPurchaseSchema = new mongoose.Schema({
 });
 
 /**
- * Defines information regarding the customer who purchased the item. Used to slice and dice data
+ * Defines information regarding the customer who purchased the product. Used to slice and dice data
  */
 const customerInformation = new mongoose.Schema({
   firstName: String,
@@ -118,34 +118,34 @@ const sourcingCompanySchema = new mongoose.Schema({
 });
 
 /**
- * Defines the shops where the business items are sold at
+ * Defines the shops where the business products are sold at
  * @param name: Enum of shops that the application supports
  *  - ENUM: FB Marketplace, Offerup, Craigslist, Etsy, Ebay, Amazon
- * @param url: URL to the page where you can add new items to your store
- * @param itemIds: list of item Ids that you are selling at the given shop
+ * @param url: URL to the page where you can add new products to your store
+ * @param productIds: list of product Ids that you are selling at the given shop
  */
 const shopSchema = new mongoose.Schema({
   name: String,
   url: String,
-  itemIds: [ObjectID],
+  productIds: [ObjectID],
 });
 
 /**
- * Defines the item details at a particular shop
- * @param itemId:
+ * Defines the product details at a particular shop
+ * @param productId:
  * @param shopId:
- * @param title: Defaults to the name of the item, but can be overwritten for each shop the item is sold at
+ * @param title: Defaults to the name of the product, but can be overwritten for each shop the product is sold at
  * @param url: URL to direct user to the place where he can modify inventory for that specific shop
- * @param unitSellPrice: Price per item, without the discount applied.
+ * @param unitSellPrice: Price per product, without the discount applied.
  * @param discountPercent: Stored in decimal
- * @param isAlwaysFreeShipping: Defines whether the item always has free shipping or not
+ * @param isAlwaysFreeShipping: Defines whether the product always has free shipping or not
  * @param freeShippingSpendThreshold: Defines how much customer has to purchase before free shipping
  * @param shippingCost: The cost of shipping if `freeShippingSpendThreshold` is not met
- * @param restockQuantity: Defines what total quantity to restock the item to.
- * @param restockQuantityThreshold: Defines when the program will automatically increase the item stock at this store, if there is enough totalQuantity to do so.
+ * @param restockQuantity: Defines what total quantity to restock the product to.
+ * @param restockQuantityThreshold: Defines when the program will automatically increase the product stock at this store, if there is enough totalQuantity to do so.
  */
-const itemsInShopSchema = new mongoose.Schema({
-  itemId: ObjectID,
+const productsInShopSchema = new mongoose.Schema({
+  productId: ObjectID,
   shopId: ObjectID,
   title: String,
   url: String,
@@ -159,12 +159,12 @@ const itemsInShopSchema = new mongoose.Schema({
 });
 
 /**
- * Defines the inventory for a given item
+ * Defines the inventory for a given product
  * @param name: Item title to be displayed on the header
  * @param tagline: Secondary title
  * @param description:
- * @param tags: A way to tag the items to use for filtering and sorting
- * @param shopIds: Defines what shops this item is being sold at for the business
+ * @param tags: A way to tag the products to use for filtering and sorting
+ * @param shopIds: Defines what shops this product is being sold at for the business
  * @param averageUnitCost:
  * @param totalQuantityInStock:
  * @param restockBufferQuantity: Defines what minimum quantity before not allowing auto restocking at shops.
@@ -173,7 +173,7 @@ const itemsInShopSchema = new mongoose.Schema({
  * @param autoRebuyThreshold:
  * @param pictures:
  */
-const itemSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
   name: String,
   tagline: String,
   description: String,
@@ -190,7 +190,7 @@ const itemSchema = new mongoose.Schema({
 
 /**
  * Defines the different picture sizes
- * @param isLandingPicture: Defines what picture is the first picture the user sees for a given item
+ * @param isLandingPicture: Defines what picture is the first picture the user sees for a given product
  */
 const pictureSchema = new mongoose.Schema({
   isLandingPicture: Boolean,
