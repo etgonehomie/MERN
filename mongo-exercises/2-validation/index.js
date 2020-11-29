@@ -34,6 +34,10 @@ const productSchema = new mongoose.Schema({
     min: 0,
     max: 99999,
   },
+  onSale: {
+    type: Boolean,
+    default: false,
+  },
   categories: {
     type: [String],
     default: ["uncategorized"],
@@ -50,6 +54,12 @@ productSchema.methods.displayItem = function () {
   console.log(
     `You have ${this.quantity} ${this.name} each priced at $${this.price}!`
   );
+};
+
+// Another instance method to easily modify the data model
+productSchema.methods.toggleSale = function () {
+  this.onSale = !this.onSale;
+  this.save();
 };
 
 const Product = mongoose.model("Product", productSchema);
