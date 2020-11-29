@@ -101,7 +101,9 @@ Item.findById("5fc2e7bdcad2c94fc7d5865e").then((data) => {
   console.log(data);
 });
 
-// #5 Updating data. can use updateOne or updateMany or find*AndUpdate
+// #5 Updating data
+// updateOne/Many -> returns the count of objects modified
+// find*AndUpdate -> returns the object modified. With new = true option, it will return the modified object, else it will return the old non-modified object
 
 // This will only give the count of items modified
 Item.updateMany({ shops: { $in: ["FB", "Craigslist"] } }, { quantity: 5 }).then(
@@ -120,3 +122,7 @@ Item.findByIdAndUpdate(
   console.log("updated books to 50 quantity");
   console.log(data);
 });
+
+// #6 Delete using Model functions
+// deleteOne/Many -> returns the count of objects deleted
+// find*AndDelete -> returns the object deleted
