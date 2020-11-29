@@ -1,4 +1,5 @@
 // #1 Boilerplate for MongoDB with Mongoose package to help with interacting with data
+// Do not need to write all code in the .then of the connect function because Mongoose does buffering and allows using models before the connection is actually made
 const mongoose = require("mongoose");
 const databaseName = "inventory";
 const databasePort = "27017";
@@ -14,6 +15,10 @@ mongoose
     console.log(`Connection failed with error: ${e}`);
   });
 
+// TODO: Seperate these models into seperate files and put in a folder called models
+// TODO: Add validations to the models using mongoose validations. Use 'required', 'default', 'enum'
+// TODO: see validations for particular types at https://mongoosejs.com/docs/schematypes.html
+// TODO: Can define index on a property as well!
 /**
  * This defines the aggregate order that was made by the seller or the consumer. An order consists of one or many purchases
  * @param shopId: Defines what shop customer purchased from
