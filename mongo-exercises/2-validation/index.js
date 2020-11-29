@@ -56,12 +56,18 @@ productSchema.methods.displayItem = function () {
   );
 };
 
-// Another instance method to easily modify the data model
+// Another instance method to easily modify the data in that particular instance of the model
 productSchema.methods.toggleSale = function () {
   this.onSale = !this.onSale;
   this.save();
 };
 
+// ********************************************************************************************************
+// TAKEAWAY POINT: You want to create instance methods that modify an instance of your model
+// so that I dont have to keep re-writing logic
+// ********************************************************************************************************
+
+// Create the model only after creating the methods for that model
 const Product = mongoose.model("Product", productSchema);
 
 // #3 Create a new record with correct validation and save it
