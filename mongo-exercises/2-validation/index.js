@@ -41,6 +41,17 @@ const productSchema = new mongoose.Schema({
   shops: [String],
   pictures: [String],
 });
+
+// #7 Add instance methods (methods available at the instance level)
+// NOTE: MAKE SURE for instance methods TO USE FUNCTION () and not ==> functions.
+// The `this` value changes if use the arrow function for instance methods
+// NOTE2: Need to add these methods before actually creating the model using the 'const Product = ...'
+productSchema.methods.displayItem = function () {
+  console.log(
+    `You have ${this.quantity} ${this.name} each priced at $${this.price}!`
+  );
+};
+
 const Product = mongoose.model("Product", productSchema);
 
 // #3 Create a new record with correct validation and save it
@@ -119,3 +130,5 @@ Product.findOneAndUpdate(
   .catch((err) => {
     console.log(`Error is: ${err._message}`);
   });
+
+phone.displayItem();
