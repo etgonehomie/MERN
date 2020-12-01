@@ -62,9 +62,17 @@ productSchema.methods.toggleSale = function () {
   this.save();
 };
 
+// #8 Static method - used against the model itself and not just an instance of the model
+productSchema.statics.fireSale = function () {
+  return this.updateMany({}, { onSale: true, price: 20 });
+};
+
 // ********************************************************************************************************
-// TAKEAWAY POINT: You want to create instance methods that modify an instance of your model
+// TAKEAWAY POINT INSTANCE METHODS: You want to create INSTANCE methods that modify an particular instance of your model
 // so that I dont have to keep re-writing logic
+//
+// TAKEAWAY POINT STATIC METHODS: Basically doing some kind of fancy CRUD operation to all the instances of the model.
+// You want to create STATIC methods where you do a certain group of logic against all the instances of the class.
 // ********************************************************************************************************
 
 // Create the model only after creating the methods for that model
@@ -147,4 +155,11 @@ Product.findOneAndUpdate(
     console.log(`Error is: ${err._message}`);
   });
 
+// Call the instance mehtod
 phone.displayItem();
+
+// Call the static method
+Product.fireSale().then((data) => {
+  console.log("Performed a fire sale");
+  console.log(data);
+});

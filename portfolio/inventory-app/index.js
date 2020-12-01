@@ -19,6 +19,8 @@ mongoose
 // TODO: Add validations to the models using mongoose validations. Use 'required', 'default', 'enum'
 // TODO: see validations for particular types at https://mongoosejs.com/docs/schematypes.html
 // TODO: Can define index on a property as well!
+// TODO: Use virtual properties GET so we don't story data that can be derived from base data. For example if we have first and last name we can use virtual property to get full name
+// TODO: Use virtual properties SET, where if we set a virtual property, it will automatically set the base properties that are actually stored in the db
 /**
  * This defines the aggregate order that was made by the seller or the consumer. An order consists of one or many purchases
  * @param shopId: Defines what shop customer purchased from
