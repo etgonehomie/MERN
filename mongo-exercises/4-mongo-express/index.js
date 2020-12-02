@@ -10,6 +10,9 @@ app.listen("3000", () => {
   console.log("listening on port 3000");
 });
 
+// Allow serving of static files for templates to use
+app.use(express.static(path.join(__dirname, "/public")));
+
 // Boiler plate for Mongoose
 const databaseName = "shop";
 const databasePort = "27017";
