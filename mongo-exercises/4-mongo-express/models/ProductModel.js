@@ -12,7 +12,7 @@ const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    maxlength: 20,
+    maxlength: 40,
   },
   price: {
     type: Number,
@@ -28,3 +28,4 @@ const productSchema = new mongoose.Schema({
 });
 
 const Product = mongoose.model("Product", productSchema);
+module.exports = Product;
