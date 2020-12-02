@@ -33,7 +33,7 @@ mongoose
   });
 
 // Add needed models
-const Product = require("./models/ProductModel");
+const Product = require("./models/product");
 // Testing a Get function
 app.get("/", (req, res) => {
   res.render("home");
