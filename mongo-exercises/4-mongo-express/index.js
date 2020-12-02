@@ -3,39 +3,37 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
+const c = require("./constants");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
-app.listen("3000", () => {
-  console.log("listening on port 3000");
+app.listen(c.serverPort, () => {
+  console.log(`Listening on server Port#${c.serverPort}`);
 });
 
 // Allow serving of static files for templates to use
 app.use(express.static(path.join(__dirname, "/public")));
 
 // Boiler plate for Mongoose
-const databaseName = "shop";
-const databasePort = "27017";
+
 mongoose
-  .connect(`mongodb://localhost:${databasePort}/${databaseName}`, {
+  .connect(`mongodb://localhost:${c.databasePort}/${c.databaseName}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log(`Connection Success: ${displayDatabaseHeader()} open`);
+    console.log(`Connection Success: ${c.displayDatabaseHeader()} open`);
   })
   .catch((e) => {
-    console.log(`Connection Failure: ${displayDatabaseHeader()}`);
+    console.log(`Connection Failure: ${c.displayDatabaseHeader()}`);
     console.log(
       `Ensure the mongo db is started using terminal alias cmd 'dbstart'`
     );
     console.log(`Error: ${e}`);
   });
 
-const displayDatabaseHeader = function () {
-  return `Database named "${databaseName}" on Port#${databasePort}`;
-};
-
+// Add needed models
+const Product = require("./models/product");
 // Testing a Get function
 app.get("/", (req, res) => {
   res.render("home");
