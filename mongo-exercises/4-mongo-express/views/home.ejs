@@ -3,13 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/app.css" />
     <title>Inventory</title>
   </head>
   <body>
     <h1>Inventory</h1>
-    // if there is inventory then... // Create a table with header: Name | Price
-    | Quantity | Picture // for each item in the db add a row <%- include
-    ('partials/bs4-js') %>
+    <!-- IF there is inventory then...  -->
+    <!-- Create a table with header: Name | Price | Quantity | Picture  -->
+    <!-- for each item in the db add a row  -->
+    <div class="container">
+      <table class="table table-striped table-hover table-sm">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <%- include ('partials/bs4-js') %>
   </body>
 </html>

@@ -37,7 +37,6 @@ const displayDatabaseHeader = function () {
 };
 
 // Testing a Get function
-app.get("/test", (req, res) => {
-  console.log("WHOO HOO!");
-  res.send("GOT EM!");
+app.get("/", (req, res) => {
+  res.render("home");
 });
