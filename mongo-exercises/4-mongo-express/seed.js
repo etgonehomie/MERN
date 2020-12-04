@@ -4,9 +4,11 @@
 const mongoose = require("mongoose");
 const Product = require("./models/product.js");
 const c = require("./constants");
+const databaseConnection = `mongodb://localhost:${c.databasePort}/${c.databaseName}`;
+console.log(databaseConnection);
 
 mongoose
-  .connect(`mongodb://localhost:${c.databasePort}/${c.databaseName}`, {
+  .connect(databaseConnection, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -20,15 +22,6 @@ mongoose
     );
     console.log(`Error: ${e}`);
   });
-
-// Clear out old data
-// Product.remove()
-//   .then(() => {
-//     console.log("Successfully cleared db");
-//   })
-//   .catch((e) => {
-//     console.log("Could not clear the db.");
-//   });
 
 // Seed new data
 const seedFile = [
@@ -64,15 +57,19 @@ const seedFile = [
   },
 ];
 
-// TODO: Need to see why I can't see this in Mongo shell
-Product.insertMany(seedFile)
-  .then((res) => {
-    console.log("Data seeded!");
-    console.log(res);
-  })
-  .catch((e) => {
-    console.log("Error: Issue with seeding data");
-    console.log(e);
-  });
+// Clear out old data
+async function seedData() {
+  const clearData = await Product.remove();
+  return await Product.insertMany(seedFile);
+}
 
-Product.find({});
+// Clear out the data and add new data in
+seedData()
+  .then((data) => {
+    console.log("Data removed and seeded");
+    console.log(data);
+  })
+  .catch((error) => {
+    console.log("Error: Not able to remove and insert the new data");
+    console.log(error);
+  });
