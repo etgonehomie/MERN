@@ -34,7 +34,9 @@ mongoose
 
 // Add needed models
 const Product = require("./models/product");
+
 // Testing a Get function
-app.get("/", (req, res) => {
-  res.render("home");
+app.get("/", async (req, res) => {
+  const products = await Product.find({});
+  res.render("home", { products });
 });
