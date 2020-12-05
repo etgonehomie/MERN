@@ -2,7 +2,7 @@
 
 // Get mongoose started
 const mongoose = require("mongoose");
-const Product = require("./models/product.js");
+const Product = require("./models/ProductModel.js");
 const c = require("./constants");
 const databaseConnection = `mongodb://localhost:${c.databasePort}/${c.databaseName}`;
 console.log(databaseConnection);

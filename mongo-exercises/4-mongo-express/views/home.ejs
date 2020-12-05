@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="/css/app.css" />
     <title>Inventory</title>
   </head>
   <body>
@@ -13,7 +13,10 @@
     <% if (products) { %>
     <!-- Create a table with header: Name | Price | Quantity | Picture  -->
     <div class="container">
-      <table class="table table-striped table-hover table-sm">
+      <table
+        id="product-table"
+        class="table table-striped table-hover table-sm"
+      >
         <thead class="thead-dark">
           <tr>
             <th scope="col">Name</th>
@@ -21,10 +24,10 @@
             <th scope="col">Category</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="product-entries">
           <!-- For each item in the db add a row  -->
           <% for(p of products) { %>
-          <tr>
+          <tr id="<%= p._id %>">
             <td><%= p.name %></td>
             <td><%= p.price %></td>
             <td><%= p.category %></td>
@@ -33,6 +36,6 @@
         </tbody>
       </table>
     </div>
-    <% } %> <%- include ('partials/bs4-js') %>
+    <% } %> <%- include ('partials/js-scripts') %>
   </body>
 </html>
