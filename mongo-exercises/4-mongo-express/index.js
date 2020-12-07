@@ -12,7 +12,6 @@ app.set("views", path.join(__dirname, "/views"));
 app.use(express.static(path.join(__dirname, "/public")));
 
 // Boiler plate for Mongoose
-
 mongoose
   .connect(`mongodb://localhost:${c.databasePort}/${c.databaseName}`, {
     useNewUrlParser: true,
