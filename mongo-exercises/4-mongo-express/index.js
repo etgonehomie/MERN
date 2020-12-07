@@ -34,16 +34,13 @@ const Product = require("./models/ProductModel");
 
 // Get the index page for all items
 app.get("/", async (req, res) => {
-  const products = await Product.find({});
-  res.render("home", { products });
+  res.redirect("/items");
 });
 
 // Get unique item details page
-app.get("/items", (req, res) => {
-  const { id } = req.query;
-  console.log(`Retrieved in node: ${id}`);
-  // res.redirect("/error");
-  // res.redirect(`items/${id}`);
+app.get("/items", async (req, res) => {
+  const products = await Product.find({});
+  res.render("items/home", { products });
 });
 
 app.get("/items/:id", async (req, res) => {
@@ -51,7 +48,7 @@ app.get("/items/:id", async (req, res) => {
   try {
     const product = await Product.findById(id);
     const tags = product.tag;
-    res.render("item", { product, tags });
+    res.render("items/detailed", { product, tags });
   } catch (err) {
     console.log(err);
     res.render("error");
@@ -64,5 +61,5 @@ app.use((req, res) => {
 });
 
 app.listen(c.serverPort, () => {
-  console.log(`Listening on server Port#${c.serverPort}`);
+  console.log(`Listening on server Port# ${c.serverPort}`);
 });
