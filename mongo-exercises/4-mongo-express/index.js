@@ -43,11 +43,21 @@ app.get("/items", async (req, res) => {
 });
 
 app.get("/items/:id", async (req, res) => {
+  const { edit } = req.query;
   const { id } = req.params;
+  const isEditMode = edit ? true : false;
+  const detailedClassName = isEditMode ? "edit-detailed" : "display-detailed";
+  console.log(`className = ${detailedClassName}`);
+
   try {
     const product = await Product.findById(id);
     const tags = product.tag;
-    res.render("items/detailed", { product, tags });
+    res.render("items/detailed", {
+      product,
+      tags,
+      detailedClassName,
+      isEditMode,
+    });
   } catch (err) {
     console.log(err);
     res.render("error");

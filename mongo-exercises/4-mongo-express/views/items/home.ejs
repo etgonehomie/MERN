@@ -30,7 +30,7 @@
           <% for(p of products) { %>
           <tr id="<%= p._id %>">
             <td><%= p.name %></td>
-            <td><%= p.price %></td>
+            <td>$<%= p.price %></td>
             <td><%= p.category %></td>
             <td>
               <button type="button" class="btn btn-danger delete-product-btn">

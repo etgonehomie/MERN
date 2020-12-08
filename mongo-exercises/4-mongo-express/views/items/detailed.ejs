@@ -4,26 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/app.css" />
-    <script src="/js/item.js"></script>
 
     <title>Product Page</title>
   </head>
-  <body>
+  <body id="<%= product._id %>" class="<%= detailedClassName %>">
     <h1>Product: <%= product.name %></h1>
-    <p>Price: $<%= product.price %></p>
-    <p>Category: <%= product.category %></p>
-    <p>
-      Tags:<% for( let index = 0; index < tags.length; index++ ) { %> <%=
-      tags[index] %><% if (index + 1 !== tags.length) { %>, <% } %> <% } %>
-    </p>
+
+    <!-- Price Input -->
+    <label for="price">Price</label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">$</span>
+      </div>
+      <input
+        id="price"
+        disabled
+        type="text"
+        class="form-control"
+        aria-label="Amount"
+        value="<%=product.price%>"
+      />
+    </div>
+
+    <!-- Category Input -->
+    <label for="category">Category:</label>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        id="category"
+        disabled
+        class="form-control"
+        placeholder="Category"
+        aria-label="Category"
+        value="<%= product.category %>"
+      />
+    </div>
+
+    <!-- Tags Input -->
+    <label for="category">Tags:</label>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        id="tags"
+        disabled
+        class="form-control"
+        placeholder="Tags"
+        aria-label="Tags"
+        value="<% for( let index = 0; index < tags.length; index++ ) { %> <%=
+          tags[index] %><% if (index + 1 !== tags.length) { %>, <% } %> <% } %>"
+      />
+    </div>
 
     <h3><a href="/">Go back home</a></h3>
     <button type="button" id="delete-product" class="btn btn-danger">
       Delete Me
     </button>
-    <button type="button" id="edit-product" class="btn btn-info">
-      Edit Information
+    <button
+      type="button"
+      id="edit-save-product"
+      class="btn btn-info <%= detailedClassName %>"
+    >
+      <% if (isEditMode === true) { %> Save <% } else { %> Edit <%} %> Product
     </button>
-    <!-- TODO: Why is there an error when I import this?? -->
+
+    <script src="/js/detailed.js"></script>
   </body>
 </html>
