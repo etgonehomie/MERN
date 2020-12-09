@@ -11,18 +11,37 @@ deleteButton.addEventListener("click", function () {
   window.location.href = `http://localhost:3000`;
 });
 
-// Make a listener for on page load that either sets the fields to display or edit
+//TODO: Make a listener for on page load that:
+// Sets the fields to display or edit
+// Also sets the tags
+// Also sets the selected category
 
-editAndSaveButton.addEventListener("click", function () {
-  console.log(`this BEFORE class is ${this.classList}`);
-
+editAndSaveButton.addEventListener("click", async function () {
+  // If in edit mode and click on save, try to save to the database and then go to display mode
   if (this.classList.contains(editModeClassName)) {
-    setDisplayMode(this);
+    const id = this.parentElement.id;
+    // Update the database:
+    const response = await fetch(`/items/${id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      redirect: "follow",
+      body: JSON.stringify({
+        price: document.getElementById("price").value,
+        category: document.getElementById("category").value,
+        tag: document.getElementById("tags").value,
+      }),
+    })
+      .then(() => {
+        console.log("Successfuly brought back");
+        setDisplayMode(this);
+      })
+      .catch((error) => {
+        alert("received error");
+        console.log(error);
+      });
   } else {
     setEditMode(this);
-    // TODO: Need to PATCH this request
   }
-  console.log(`this AFTER class is ${this.classList}`);
 });
 
 // Helper function to setup the detailed screen for display mode

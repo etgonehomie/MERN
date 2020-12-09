@@ -29,15 +29,13 @@
     <!-- Category Input -->
     <label for="category">Category:</label>
     <div class="input-group mb-3">
-      <input
-        type="text"
-        id="category"
-        disabled
-        class="form-control"
-        placeholder="Category"
-        aria-label="Category"
-        value="<%= product.category %>"
-      />
+      <select class="custom-select" id="category" disabled>
+        <option>Electronics</option>
+        <option>Creative</option>
+        <option>Home Goods</option>
+        <option>Decorations</option>
+        <option selected>Books</option>
+      </select>
     </div>
 
     <!-- Tags Input -->
@@ -50,8 +48,9 @@
         class="form-control"
         placeholder="Tags"
         aria-label="Tags"
-        value="<% for( let index = 0; index < tags.length; index++ ) { %> <%=
-          tags[index] %><% if (index + 1 !== tags.length) { %>, <% } %> <% } %>"
+        value="<% for( let index = 0; index < tags.length; index++ ) { %> 
+          <%= tags[index] %>
+          <% if (index + 1 !== tags.length) { %>,<% }} %>"
       />
     </div>
 

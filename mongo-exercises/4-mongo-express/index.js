@@ -11,6 +11,12 @@ app.set("views", path.join(__dirname, "/views"));
 // Allow serving of static files for templates to use
 app.use(express.static(path.join(__dirname, "/public")));
 
+// allows parsing of default <form> tag data
+app.use(express.urlencoded({ extended: true }));
+
+// allows parsing of json data from any post request that is not in a <form> tag
+app.use(express.json());
+
 // Boiler plate for Mongoose
 mongoose
   .connect(`mongodb://localhost:${c.databasePort}/${c.databaseName}`, {
@@ -58,6 +64,25 @@ app.get("/items/:id", async (req, res) => {
       detailedClassName,
       isEditMode,
     });
+  } catch (err) {
+    console.log(err);
+    res.render("error");
+  }
+});
+
+// PATCH METHOD
+app.patch("/items/:id", async (req, res) => {
+  const { id } = req.params;
+  const { price, category, tag } = req.body;
+  try {
+    const product = await Product.findById(id);
+    product.price = price;
+    product.category = category;
+    product.tag = tag;
+    product.save();
+    console.log(product);
+    console.log("Updated PATCH");
+    res.end("Updated successfully");
   } catch (err) {
     console.log(err);
     res.render("error");

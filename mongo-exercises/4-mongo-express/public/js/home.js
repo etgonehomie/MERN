@@ -6,15 +6,14 @@ let deleteProductButtons = document.querySelectorAll(
 let resetButton = document.querySelector("#reset-db-btn");
 // Create event listeners for every row
 for (const product of productTableRows) {
-  // product.removeEventListener("click", clickHandler, false);
+  product.removeEventListener("click", clickableRow);
+  product.addEventListener("click", clickableRow);
+}
 
-  product.addEventListener("click", function () {
-    // TODO: Destroy all existing event listeners
-
-    // On click of the row navigate to a new detials screen
-    const id = product.id;
-    window.location.href = `http://localhost:3000/items/${id}`;
-  });
+// Function to allow clickable row to detailed screen
+function clickableRow() {
+  const id = this.id;
+  window.location.href = `http://localhost:3000/items/${id}`;
 }
 
 // TODO: Need to add listeners for button click to remove the row
