@@ -1,20 +1,42 @@
 const deleteButton = document.getElementById("delete-product");
 const editAndSaveButton = document.getElementById("edit-save-product");
+const categoryLabel = document.getElementById("category");
+const tagsLabel = document.getElementById("tags");
 const editModeClassName = "edit-detailed";
 const displayModeClassName = "display-detailed";
 const inputIds = ["price", "tags", "category"];
-// TODO: Need to somehow get the ID to pass to the edit/delete functions
 
 deleteButton.addEventListener("click", function () {
-  const id = this.parentElement.id;
+  const id = document.body.id;
   //TODO: Need to delete send a fetch(url, delete) call
   window.location.href = `http://localhost:3000`;
 });
 
-//TODO: Make a listener for on page load that:
-// Sets the fields to display or edit
-// Also sets the tags
-// Also sets the selected category
+document.addEventListener("DOMContentLoaded", async function () {
+  const id = document.body.id;
+  let product;
+  try {
+    const res = await fetch(`/items-data/${id}`);
+    const data = await res.json();
+    product = data.product;
+
+    const reducer = (accumulator, currentValue) => {
+      accumulator + ", " + currentValue.trim();
+    };
+
+    // Set the category and tags
+    document.getElementById(product.category).setAttribute("selected", true);
+    const tags = product.tag.reduce(reducer);
+    tagsLabel.value = tags;
+
+    //TODO: Need to check if edit or display mode
+  } catch (err) {
+    console.log("error occurred");
+    console.log(err);
+  }
+
+  console.log(product);
+});
 
 editAndSaveButton.addEventListener("click", async function () {
   // If in edit mode and click on save, try to save to the database and then go to display mode
@@ -33,30 +55,30 @@ editAndSaveButton.addEventListener("click", async function () {
     })
       .then(() => {
         console.log("Successfuly brought back");
-        setDisplayMode(this);
+        setDisplayMode();
       })
       .catch((error) => {
         alert("received error");
         console.log(error);
       });
   } else {
-    setEditMode(this);
+    setEditMode();
   }
 });
 
 // Helper function to setup the detailed screen for display mode
-function setDisplayMode(button) {
-  button.classList.remove(editModeClassName);
-  button.classList.add(displayModeClassName);
-  button.innerText = "Edit Product";
+function setDisplayMode() {
+  editAndSaveButton.classList.remove(editModeClassName);
+  editAndSaveButton.classList.add(displayModeClassName);
+  editAndSaveButton.innerText = "Edit Product";
   setInputToDisplay(true);
 }
 
 // Helper function to setup the detailed screen for edit mode
-function setEditMode(button) {
-  button.classList.remove(displayModeClassName);
-  button.classList.add(editModeClassName);
-  button.innerText = "Save Product";
+function setEditMode() {
+  editAndSaveButton.classList.remove(displayModeClassName);
+  editAndSaveButton.classList.add(editModeClassName);
+  editAndSaveButton.innerText = "Save Product";
   setInputToDisplay(false);
 }
 

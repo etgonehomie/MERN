@@ -48,6 +48,17 @@ app.get("/items", async (req, res) => {
   res.render("items/home", { products });
 });
 
+app.get("/items-data", async (req, res) => {
+  const products = await Product.find({});
+  res.json({ products });
+});
+
+app.get("/items-data/:id", async (req, res) => {
+  const { id } = req.params;
+  const product = await Product.findById(id);
+  res.json({ product });
+});
+
 app.get("/items/:id", async (req, res) => {
   const { edit } = req.query;
   const { id } = req.params;
