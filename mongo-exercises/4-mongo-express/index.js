@@ -106,7 +106,8 @@ app.delete("/items/:id", async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(id);
     console.log("deleted successfully");
-    res.redirect("/");
+    const isDeleted = true;
+    res.render("home", { isDeleted, ...product });
   } catch (err) {
     console.log("Could not find the product to delete");
     console.log(err);

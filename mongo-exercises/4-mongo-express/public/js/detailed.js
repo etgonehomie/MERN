@@ -21,8 +21,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Set the category and tags
     document.getElementById(product.category).setAttribute("selected", true);
     const tags = product.tag.reduce(reducer);
-    tagsLabel.value = tags;
-
+    if (tags) {
+      tagsLabel.value = tags;
+    }
     //TODO: Need to check if edit or display mode
   } catch (err) {
     console.log("error occurred");

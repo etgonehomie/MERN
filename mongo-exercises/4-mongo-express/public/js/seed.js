@@ -1,27 +1,27 @@
-// // Used to seed the database when needing to debug
+// Used to seed the database when needing to debug
 
-// // Get mongoose started
-// const mongoose = require("mongoose");
-// const Product = require("../../models/ProductModel.js");
-// const c = require("../../constants");
-// const databaseConnection = `mongodb://localhost:${c.databasePort}/${c.databaseName}`;
-// console.log(databaseConnection);
+// Get mongoose started
+const mongoose = require("mongoose");
+const Product = require("../../models/ProductModel.js");
+const c = require("../../constants");
+const databaseConnection = `mongodb://localhost:${c.databasePort}/${c.databaseName}`;
+console.log(databaseConnection);
 
-// mongoose
-//   .connect(databaseConnection, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => {
-//     console.log(`Connection Success: ${c.displayDatabaseHeader()} open`);
-//   })
-//   .catch((e) => {
-//     console.log(`Connection Failure: ${c.displayDatabaseHeader()}`);
-//     console.log(
-//       `Ensure the mongo db is started using terminal alias cmd 'dbstart'`
-//     );
-//     console.log(`Error: ${e}`);
-//   });
+mongoose
+  .connect(databaseConnection, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log(`Connection Success: ${c.displayDatabaseHeader()} open`);
+  })
+  .catch((e) => {
+    console.log(`Connection Failure: ${c.displayDatabaseHeader()}`);
+    console.log(
+      `Ensure the mongo db is started using terminal alias cmd 'dbstart'`
+    );
+    console.log(`Error: ${e}`);
+  });
 
 // Seed new data
 const seedFile = [
