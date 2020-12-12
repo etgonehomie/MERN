@@ -42,6 +42,12 @@ app.get("/", async (req, res) => {
   res.redirect("/items");
 });
 
+// Add new item
+app.get("/items/new", (req, res) => {
+  res.render("items/detailed");
+  // res.send("GOT IT!!");
+});
+
 // Get unique item details page
 app.get("/items", async (req, res) => {
   const products = await Product.find({});
@@ -106,18 +112,12 @@ app.delete("/items/:id", async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(id);
     console.log("deleted successfully");
-    const isDeleted = true;
-    res.render("home", { isDeleted, ...product });
+    res.redirect("/");
   } catch (err) {
     console.log("Could not find the product to delete");
     console.log(err);
   }
 });
-
-// Add new item
-// app.put("/items", (req, res) => {
-//   res.render()
-// }
 
 // Default any page not available to the error page
 app.use((req, res) => {
