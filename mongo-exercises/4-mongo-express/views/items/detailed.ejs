@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/app.css" />
-
+    <script defer src="/js/detailed.js"></script>
     <title>Product Page</title>
   </head>
   <body id="<%= product._id %>" class="<%= detailedClassName %>">
@@ -63,7 +63,6 @@
     >
       <% if (isEditMode === true) { %> Save <% } else { %> Edit <%} %> Product
     </button>
-
-    <script src="/js/detailed.js"></script>
+    <%- include ('../partials/js-scripts') %>
   </body>
 </html>

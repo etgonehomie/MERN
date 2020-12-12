@@ -12,7 +12,7 @@ app.set("views", path.join(__dirname, "/views"));
 app.use(express.static(path.join(__dirname, "/public")));
 
 // allows parsing of default <form> tag data
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 // allows parsing of json data from any post request that is not in a <form> tag
 app.use(express.json());
@@ -42,10 +42,18 @@ app.get("/", async (req, res) => {
   res.redirect("/items");
 });
 
-// Add new item
+// Present Create new item page
 app.get("/items/new", (req, res) => {
-  res.render("items/detailed");
-  // res.send("GOT IT!!");
+  res.render("items/create");
+});
+
+// Post the newly created item to database
+app.post("/items", (req, res) => {
+  // const { name, category, tags, price } = req.body;
+  console.log(req.body);
+  // console.log(`got them: ${name} ${category} ${price}`);
+  res.redirect("/items/new");
+  // res.redirect("/");
 });
 
 // Get unique item details page
@@ -65,6 +73,7 @@ app.get("/items-data/:id", async (req, res) => {
   res.json({ product });
 });
 
+// DISPLAY ITEM
 app.get("/items/:id", async (req, res) => {
   const { edit } = req.query;
   const { id } = req.params;
