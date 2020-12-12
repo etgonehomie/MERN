@@ -1,9 +1,11 @@
 // Query Selector for all rows in table
 let productTableRows = document.querySelectorAll("#product-entries tr");
-let deleteProductButtons = document.querySelectorAll(
-  "#product-entries .delete-product-btn"
+let addButton = document.getElementById("add-btn");
+let deleteProductButtons = document.getElementsByClassName(
+  ".delete-product-btn"
 );
-let resetButton = document.querySelector("#reset-db-btn");
+let resetButton = document.getElementById("reset-db-btn");
+
 // Create event listeners for every row
 for (const product of productTableRows) {
   product.removeEventListener("click", clickableRow);
@@ -20,6 +22,10 @@ function clickableRow() {
 for (const deleteBtn of deleteProductButtons) {
 }
 
+// Add new product
+addButton.addEventListener("click", function () {
+  window.location.href = `http://localhost:3000/items/`;
+});
 // Reset the db to seed file
 resetButton.addEventListener("click", function () {
   // TODO: Need to somehow import the seedData() module

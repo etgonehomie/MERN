@@ -6,12 +6,6 @@ const editModeClassName = "edit-detailed";
 const displayModeClassName = "display-detailed";
 const inputIds = ["price", "tags", "category"];
 
-deleteButton.addEventListener("click", function () {
-  const id = document.body.id;
-  //TODO: Need to delete send a fetch(url, delete) call
-  window.location.href = `http://localhost:3000`;
-});
-
 document.addEventListener("DOMContentLoaded", async function () {
   const id = document.body.id;
   let product;
@@ -46,7 +40,6 @@ editAndSaveButton.addEventListener("click", async function () {
     const response = await fetch(`/items/${id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
-      redirect: "follow",
       body: JSON.stringify({
         price: document.getElementById("price").value,
         category: document.getElementById("category").value,
@@ -63,6 +56,19 @@ editAndSaveButton.addEventListener("click", async function () {
       });
   } else {
     setEditMode();
+  }
+});
+
+deleteButton.addEventListener("click", async function () {
+  const id = document.body.id;
+  try {
+    const deleteReq = await fetch(`/items/${id}`, {
+      method: "DELETE",
+    });
+    console.log("tried to delete");
+    window.location.href = `http://localhost:3000`;
+  } catch (error) {
+    console.log(error);
   }
 });
 

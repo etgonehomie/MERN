@@ -100,6 +100,24 @@ app.patch("/items/:id", async (req, res) => {
   }
 });
 
+// Delete item
+app.delete("/items/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findByIdAndDelete(id);
+    console.log("deleted successfully");
+    res.redirect("/");
+  } catch (err) {
+    console.log("Could not find the product to delete");
+    console.log(err);
+  }
+});
+
+// Add new item
+// app.put("/items", (req, res) => {
+//   res.render()
+// }
+
 // Default any page not available to the error page
 app.use((req, res) => {
   res.render("error");
