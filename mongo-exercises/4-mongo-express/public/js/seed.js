@@ -29,7 +29,7 @@ const seedFile = [
     name: "iPhone X",
     price: 600,
     category: "Electronics",
-    tags: ["phone"],
+    tags: ["phone", "apple", "smartphone"],
   },
   {
     name: "Securities & Analysis",

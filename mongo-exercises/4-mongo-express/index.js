@@ -38,20 +38,17 @@ mongoose
 const Product = require("./models/ProductModel");
 
 // Post the newly created item to database
-// TODO: Find out why the post is not grabbing the req.body. It might be due to the `app.use(express.urlencoded())`
-
 app.post("/items", (req, res) => {
   const { name, category, tags, price } = req.body;
-  console.log(req.body);
-  if (tags) {
-    const tagsArray = tags.split(" ");
-  }
+  const tagsArray = tags ? tags.replace(/\s/g, "").split(",") : [];
   const product = new Product({
     name: name,
     category: category,
-    tags: [tags],
+    tags: tagsArray,
     price: price,
   });
+  console.log("Product Created Successfully!");
+  console.log(product);
   product
     .save()
     .then(() => {
@@ -99,7 +96,7 @@ app.get("/items/:id", async (req, res) => {
 
   try {
     const product = await Product.findById(id);
-    const tags = product.tag;
+    const tags = product.tags;
     res.render("items/detailed", {
       product,
       tags,
@@ -114,16 +111,17 @@ app.get("/items/:id", async (req, res) => {
 
 // PATCH METHOD
 app.patch("/items/:id", async (req, res) => {
+  console.log("entered patch method");
   const { id } = req.params;
   const { price, category, tags } = req.body;
-  const tagArray = tags ? tags.split(" ") : ["none"];
+  const tagsArray = tags ? tags.replace(/\s/g, "").split(",") : [];
   console.log(typeof tagArray);
 
   try {
     const product = await Product.findById(id);
     product.price = price;
     product.category = category;
-    product.tags = tagArray;
+    product.tags = tagsArray;
     product.save();
     console.log(product);
     console.log("Updated PATCH");

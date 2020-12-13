@@ -6,6 +6,7 @@ const editModeClassName = "edit-detailed";
 const displayModeClassName = "display-detailed";
 const inputIds = ["price", "tags", "category"];
 
+// To load the detailed page with product information
 document.addEventListener("DOMContentLoaded", async function () {
   const id = document.body.id;
   let product;
@@ -20,11 +21,15 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Set the category and tags
     document.getElementById(product.category).setAttribute("selected", true);
-    const tags = product.tags.reduce(reducer);
+    const tags = product.tags ? product.tags.join(", ") : "";
+    console.log(`product from items-data is:`);
+    console.log(product);
+    console.log(`product from TAGS is:`);
+    console.log(tags);
     if (tags) {
       tagsLabel.value = tags;
     }
-    //TODO: Need to check if edit or display mode
+    // TODO: Need to check if edit or display mode
   } catch (err) {
     console.log("error occurred");
     console.log(err);
@@ -33,10 +38,12 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log(product);
 });
 
+// Save new item to database if in edit mode.
 editAndSaveButton.addEventListener("click", async function () {
   // If in edit mode and click on save, try to save to the database and then go to display mode
   if (this.classList.contains(editModeClassName)) {
     const id = this.parentElement.id;
+
     // Update the database:
     const response = await fetch(`/items/${id}`, {
       method: "PATCH",
@@ -49,7 +56,7 @@ editAndSaveButton.addEventListener("click", async function () {
     })
       .then(() => {
         console.log("Successfuly brought back");
-        setDisplayMode();
+        window.location.href = "/";
       })
       .catch((error) => {
         alert("received error");
@@ -67,7 +74,7 @@ deleteButton.addEventListener("click", async function () {
       method: "DELETE",
     });
     console.log("tried to delete");
-    window.location.href = `http://localhost:3000`;
+    window.location.href = "/";
   } catch (error) {
     console.log(error);
   }
