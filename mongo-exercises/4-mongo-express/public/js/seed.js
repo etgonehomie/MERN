@@ -29,31 +29,31 @@ const seedFile = [
     name: "iPhone X",
     price: 600,
     category: "Electronics",
-    tag: ["phone"],
+    tags: ["phone"],
   },
   {
     name: "Securities & Analysis",
     price: 40.99,
     category: "Books",
-    tag: ["investing", "finance"],
+    tags: ["investing", "finance"],
   },
   {
     name: "Eat that Frog",
     price: 5,
     category: "Books",
-    tag: ["self-help"],
+    tags: ["self-help"],
   },
   {
     name: "Plates",
     price: 10,
     category: "Home Goods",
-    tag: ["dishware"],
+    tags: ["dishware"],
   },
   {
     name: "Wireless Earphones",
     price: 15,
     category: "Electronics",
-    tag: ["phone", "accessories"],
+    tags: ["phone", "accessories"],
   },
 ];
 

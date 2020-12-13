@@ -24,7 +24,13 @@ const productSchema = new mongoose.Schema({
     default: "Uncategorized",
     enum: validCategories,
   },
-  tag: [String],
+  tags: [String],
+});
+
+// Pre function that is called before every and any save
+productSchema.pre("save", async function () {
+  if (this.name > 40 || !this) {
+  }
 });
 
 const Product = mongoose.model("Product", productSchema);

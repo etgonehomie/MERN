@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/app.css" />
-    <script defer src="/js/detailed.js"></script>
-
+    <script src="/js/create.js"></script>
     <title>New</title>
   </head>
   <body>
@@ -23,6 +22,7 @@
               autofocus
               type="text"
               class="form-control"
+              name="name"
               id="name"
               placeholder="Smelly Socks"
             />
@@ -32,7 +32,7 @@
         <div class="form-group row">
           <label for="category" class="col-sm-2 col-form-label">Category</label>
           <div class="col-sm-3">
-            <select required id="category" class="form-control">
+            <select required id="category" name="category" class="form-control">
               <option selected>Choose...</option>
               <option id="Electronics" value="Electronics">Electronics</option>
               <option id="Creative" value="Creative">Creative</option>
@@ -45,6 +45,7 @@
             <input 
               type="text"
               class="form-control"
+              name="tags"
               id="tags"
               placeholder="Tag me!"
             />
@@ -52,7 +53,7 @@
         </div>
         
         <div class="form-group row">
-          <label for="product-price" class="col-sm-2 col-form-label"
+          <label for="price" class="col-sm-2 col-form-label"
             >Price</label
           >
           <div class="col-sm-2">
@@ -60,7 +61,8 @@
               required 
               type="number"
               class="form-control"
-              id="product-price"
+              id="price"
+              name="price"
               placeholder="9.99"
             />
           </div>

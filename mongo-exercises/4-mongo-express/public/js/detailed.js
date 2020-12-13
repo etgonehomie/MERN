@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Set the category and tags
     document.getElementById(product.category).setAttribute("selected", true);
-    const tags = product.tag.reduce(reducer);
+    const tags = product.tags.reduce(reducer);
     if (tags) {
       tagsLabel.value = tags;
     }
@@ -44,7 +44,7 @@ editAndSaveButton.addEventListener("click", async function () {
       body: JSON.stringify({
         price: document.getElementById("price").value,
         category: document.getElementById("category").value,
-        tag: document.getElementById("tags").value,
+        tags: document.getElementById("tags").value,
       }),
     })
       .then(() => {

@@ -11,11 +11,11 @@ app.set("views", path.join(__dirname, "/views"));
 // Allow serving of static files for templates to use
 app.use(express.static(path.join(__dirname, "/public")));
 
-// allows parsing of default <form> tag data
-app.use(express.urlencoded({ extended: false }));
-
 // allows parsing of json data from any post request that is not in a <form> tag
 app.use(express.json());
+
+// allows parsing of default <form> tag data
+app.use(express.urlencoded({ extended: true }));
 
 // Boiler plate for Mongoose
 mongoose
@@ -37,6 +37,31 @@ mongoose
 // Add needed models
 const Product = require("./models/ProductModel");
 
+// Post the newly created item to database
+// TODO: Find out why the post is not grabbing the req.body. It might be due to the `app.use(express.urlencoded())`
+
+app.post("/items", (req, res) => {
+  const { name, category, tags, price } = req.body;
+  console.log(req.body);
+  if (tags) {
+    const tagsArray = tags.split(" ");
+  }
+  const product = new Product({
+    name: name,
+    category: category,
+    tags: [tags],
+    price: price,
+  });
+  product
+    .save()
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((err) => {
+      res.render("/items/create", { err });
+    });
+});
+
 // Get the index page for all items
 app.get("/", async (req, res) => {
   res.redirect("/items");
@@ -45,15 +70,6 @@ app.get("/", async (req, res) => {
 // Present Create new item page
 app.get("/items/new", (req, res) => {
   res.render("items/create");
-});
-
-// Post the newly created item to database
-app.post("/items", (req, res) => {
-  // const { name, category, tags, price } = req.body;
-  console.log(req.body);
-  // console.log(`got them: ${name} ${category} ${price}`);
-  res.redirect("/items/new");
-  // res.redirect("/");
 });
 
 // Get unique item details page
@@ -99,12 +115,15 @@ app.get("/items/:id", async (req, res) => {
 // PATCH METHOD
 app.patch("/items/:id", async (req, res) => {
   const { id } = req.params;
-  const { price, category, tag } = req.body;
+  const { price, category, tags } = req.body;
+  const tagArray = tags ? tags.split(" ") : ["none"];
+  console.log(typeof tagArray);
+
   try {
     const product = await Product.findById(id);
     product.price = price;
     product.category = category;
-    product.tag = tag;
+    product.tags = tagArray;
     product.save();
     console.log(product);
     console.log("Updated PATCH");
