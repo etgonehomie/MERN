@@ -1,5 +1,3 @@
-// const seedData = require("seedData");
-
 // Query Selector for all rows in table
 let productTableRows = document.querySelectorAll("#product-entries tr");
 let addButton = document.getElementById("add-btn");
@@ -30,8 +28,13 @@ addButton.addEventListener("click", function () {
 });
 
 // Reset the db to seed file
-resetButton.addEventListener("click", function () {
+resetButton.addEventListener("click", async function () {
   // TODO: Need to somehow import the seedData() module
-  seed.seedData();
-  window.location.href = "/";
+  try {
+    await fetch("/reset");
+    window.location.href = "/";
+    alert("Database reset to seed file!");
+  } catch (err) {
+    console.log(err);
+  }
 });

@@ -36,6 +36,19 @@ mongoose
 
 // Add needed models
 const Product = require("./models/ProductModel");
+const seed = require("./seed");
+
+// Route to reset the database
+app.get("/reset", async (req, res) => {
+  try {
+    const data = await seed.seedData();
+    console.log("reset the data successfully");
+    console.log(data);
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 // Post the newly created item to database
 app.post("/items", (req, res) => {
