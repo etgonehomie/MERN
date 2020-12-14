@@ -29,7 +29,6 @@ addButton.addEventListener("click", function () {
 
 // Reset the db to seed file
 resetButton.addEventListener("click", async function () {
-  // TODO: Need to somehow import the seedData() module
   try {
     await fetch("/reset");
     window.location.href = "/";
