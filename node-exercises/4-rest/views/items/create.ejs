@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>Create New Item</h1>
-    <form action="http://localhost:3000/items" method="POST">
+    <form action="/items" method="POST">
       <label for="itemName">Item: </label>
       <input type="text" name="itemName" id="itemName" />
       <label for="quantity">Quantity: </label>
@@ -16,5 +16,6 @@
       <input type="text" name="price" id="price" />
       <button>Create Inventory</button>
     </form>
+    <%- include ('../partials/js-scripts') %>
   </body>
 </html>

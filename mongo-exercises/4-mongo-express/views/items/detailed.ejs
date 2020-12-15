@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <script defer src="/js/detailed.js"></script>
+    <title>Product Page</title>
+  </head>
+  <body id="<%= product._id %>" class="<%= detailedClassName %>">
+    <h1>Product: <%= product.name %></h1>
+
+    <!-- Price Input -->
+    <label for="price">Price</label>
+    <div class="input-group mb-3 col-12 col-sm-4 col-md-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">$</span>
+      </div>
+      <input
+        id="price"
+        name="price"
+        disabled
+        type="text"
+        class="form-control"
+        aria-label="Amount"
+        value="<%=product.price%>"
+      />
+    </div>
+
+    <!-- Category Input -->
+    <label for="category">Category:</label>
+    <div class="input-group mb-3 col-xs-2 col-sm-5 col-md-4">
+      <select class="custom-select" id="category" name="category" disabled>
+        <option id="Electronics" value="Electronics">Electronics</option>
+        <option id="Creative" value="Creative">Creative</option>
+        <option id="Home Goods" value="Home Goods">Home Goods</option>
+        <option id="Decorations" value="Decorations">Decorations</option>
+        <option id="Books" value="Books">Books</option>
+      </select>
+    </div>
+
+    <!-- Tags Input -->
+    <label for="category">Tags:</label>
+    <div class="input-group mb-3 col-xs-2 col-sm-5">
+      <input
+        type="text"
+        id="tags"
+        name="tags"
+        disabled
+        class="form-control"
+        placeholder="Tags"
+        aria-label="Tags"
+        value=""
+      />
+    </div>
+
+    <h3><a href="/">Go back home</a></h3>
+    <button type="button" id="delete-product" class="btn btn-danger">
+      Delete
+    </button>
+    <button
+      type="button"
+      id="edit-save-product"
+      class="btn btn-info <%= detailedClassName %>"
+    >
+      <% if (isEditMode === true) { %> Save <% } else { %> Edit <%} %> Product
+    </button>
+
+    <%- include ('../partials/js-scripts') %>
+  </body>
+</html>

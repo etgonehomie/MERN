@@ -52,6 +52,7 @@ personSchema.pre("save", async function () {
   console.log(`PRE changes it to ${this.fullName}`);
 });
 
+// This function is called after every and any save
 personSchema.post("save", async function () {
   this.first = inputtedFirst;
   this.last = inputtedLast;
