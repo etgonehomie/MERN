@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const c = require("./constants");
-const Park = require("./models/parkModel");
+const NationalPark = require("./models/nationalParkModel");
 const app = express();
 
 // Set view Engine
@@ -34,7 +34,7 @@ mongoose
   });
 
 app.get("/", async (req, res) => {
-  const park = new Park({
+  const park = new NationalPark({
     title: "Spazzy Park",
   });
   await park.save();
