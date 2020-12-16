@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const c = require("./constants");
+const Park = require("./models/parkModel");
 const app = express();
 
 // Set view Engine
@@ -32,8 +33,12 @@ mongoose
     console.log(`Error: ${e}`);
   });
 
-app.get("/", (req, res) => {
-  res.send("SET UP CORRECTLY");
+app.get("/", async (req, res) => {
+  const park = new Park({
+    title: "Spazzy Park",
+  });
+  await park.save();
+  res.send(park);
 });
 
 // Listen to any requests to the server
