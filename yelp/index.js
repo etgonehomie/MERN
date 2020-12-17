@@ -83,6 +83,13 @@ app.put("/national-parks/:id", async (req, res) => {
   res.render("national-parks/show", { park });
 });
 
+// Delete existing park
+app.delete("/national-parks/:id", async (req, res) => {
+  const { id } = req.params;
+  const park = await NationalPark.findByIdAndDelete(id);
+  res.redirect("/national-parks");
+});
+
 // Listen to any requests to the server
 app.listen(c.serverPort, () => {
   console.log(`Listening on server Port# ${c.serverPort}`);
