@@ -33,12 +33,26 @@ mongoose
     console.log(`Error: ${e}`);
   });
 
-// Get the index page
+// Get the index page for National Parks
 app.get("/national-parks", async (req, res) => {
   const parks = await NationalPark.find({});
   res.render("national-parks/home", { parks });
 });
 
+// Create a new park
+app.get("/national-parks/new", (req, res) => {
+  res.render("national-parks/create");
+});
+
+app.post("/national-parks", async (req, res) => {
+  const { title, location } = req.body;
+  const park = new NationalPark({
+    title: title,
+    location: location,
+  });
+  await park.save();
+  res.redirect("/national-parks");
+});
 // Listen to any requests to the server
 app.listen(c.serverPort, () => {
   console.log(`Listening on server Port# ${c.serverPort}`);
