@@ -35,11 +35,8 @@ mongoose
 
 // Get the index page
 app.get("/national-parks", async (req, res) => {
-  const park = new NationalPark({
-    title: "Spazzy Park",
-  });
-  await park.save();
-  res.send(park);
+  const parks = await NationalPark.find({});
+  res.render("national-parks/home", { parks });
 });
 
 // Listen to any requests to the server
