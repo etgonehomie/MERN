@@ -53,6 +53,13 @@ app.post("/national-parks", async (req, res) => {
   await park.save();
   res.redirect("/national-parks");
 });
+
+// Display Park details
+app.get("/national-parks/:id", async (req, res) => {
+  const { id } = req.params;
+  const park = await NationalPark.findById(id);
+  res.render("national-parks/show", { park });
+});
 // Listen to any requests to the server
 app.listen(c.serverPort, () => {
   console.log(`Listening on server Port# ${c.serverPort}`);

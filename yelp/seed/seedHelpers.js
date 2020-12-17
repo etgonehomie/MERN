@@ -203,7 +203,6 @@ module.exports.places = [
   "Foundry",
   "Grounds",
   "Campground",
-  "Test",
   "Creek",
   "River",
   "River Creek",

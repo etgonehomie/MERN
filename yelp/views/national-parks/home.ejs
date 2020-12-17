@@ -9,7 +9,11 @@
   <body>
     <ul>
       <% parks.forEach(park => { %>
-      <li><%= park.title %> @ <%= park.location %></li>
+      <li>
+        <a href="/national-parks/<%= park._id %>"
+          ><%= park.title %> @ <%= park.location %></a
+        >
+      </li>
       <% }) %>
     </ul>
   </body>
