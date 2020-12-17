@@ -33,7 +33,8 @@ mongoose
     console.log(`Error: ${e}`);
   });
 
-app.get("/", async (req, res) => {
+// Get the index page
+app.get("/national-parks", async (req, res) => {
   const park = new NationalPark({
     title: "Spazzy Park",
   });

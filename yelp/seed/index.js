@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const c = require("../constants");
 const NationalPark = require("../models/nationalParkModel");
+const cities = require("./cities");
+const { descriptors, places } = require("./seedHelpers");
 
 mongoose.connect(`mongodb://localhost:${c.databasePort}/${c.databaseName}`, {
   useNewUrlParser: true,
@@ -14,25 +16,20 @@ db.once("open", () => {
   console.log(`Connection Success: ${c.displayDatabaseHeader()} open`);
 });
 
-const seedNationalParks = [
-  {
-    title: "Park 1",
-    location: "Sunny Cal i A",
-    description: "Sandy Shores",
-  },
-  {
-    title: "Park 2",
-    location: "Sunny Cal i A",
-    description: "Clear Camels",
-  },
-];
-
 // Loop over n times to create a database full of parks
-const numberOfParks = 100;
+const numberOfParks = 50;
+
+const sample = (array) => array[Math.floor(Math.random() * array.length)];
+
 const seedDatabase = async () => {
   await NationalPark.deleteMany({});
-  for (nationalPark of seedNationalParks) {
-    const park = NationalPark(nationalPark);
+  for (let i = 0; i < numberOfParks; i++) {
+    const sampleCity = sample(cities);
+
+    const park = NationalPark({
+      title: `${sample(descriptors)} ${sample(places)}`,
+      location: `${sampleCity.city}, ${sampleCity.state}`,
+    });
     await park.save();
   }
 };
