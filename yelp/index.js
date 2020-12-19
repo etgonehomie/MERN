@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
+const express = require("express");
 const path = require("path");
+const ejsMate = require("ejs-mate");
 const c = require("./constants");
 const NationalPark = require("./models/nationalParkModel");
 const methodOverride = require("method-override");
 const app = express();
 
 // Set view Engine
+app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 

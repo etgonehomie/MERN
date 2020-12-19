@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Park</title>
-  </head>
-  <body>
-    <h1>Create a new park</h1>
-    <form action="/national-parks" method="POST">
-      <label for="title">Park Name</label>
-      <input type="text" id="title" name="title" />
-      <label for="location">Location</label>
-      <input type="text" id="location" name="location" />
-      <button>Submit</button>
-    </form>
-    <a href="/national-parks">List of Parks</a>
-  </body>
-</html>
+<%- layout('./templates/boilerplate') %>
+<h1>Create a new park</h1>
+<form action="/national-parks" method="POST">
+  <label for="title">Park Name</label>
+  <input type="text" id="title" name="title" />
+  <label for="location">Location</label>
+  <input type="text" id="location" name="location" />
+  <button>Submit</button>
+</form>
+<a href="/national-parks">List of Parks</a>

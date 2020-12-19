@@ -1,24 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Park Show</title>
-  </head>
-  <body>
-    <h1><%= park.title %></h1>
-    <h2><%= park.location %></h2>
-    <div>
-      <a href="/national-parks/<%= park._id %>/edit">Edit</a>
-    </div>
-    <div>
-      <form
-        action="/national-parks/<%= park._id %>?_method=DELETE"
-        method="POST"
-      >
-        <button>DELETE</button>
-      </form>
-    </div>
-    <p><a href="/national-parks">List of Parks</a></p>
-  </body>
-</html>
+<%- layout('./templates/boilerplate') %>
+<h1><%= park.title %></h1>
+<h2><%= park.location %></h2>
+<div>
+  <a href="/national-parks/<%= park._id %>/edit">Edit</a>
+</div>
+<div>
+  <form action="/national-parks/<%= park._id %>?_method=DELETE" method="POST">
+    <button>DELETE</button>
+  </form>
+</div>
+<p><a href="/national-parks">List of Parks</a></p>
