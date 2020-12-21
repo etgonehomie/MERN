@@ -38,6 +38,10 @@ mongoose
   });
 
 // Get the index page for National Parks
+app.get("/", (req, res) => {
+  res.redirect("/national-parks");
+});
+
 app.get("/national-parks", async (req, res) => {
   const parks = await NationalPark.find({});
   res.render("national-parks/home", { parks });
