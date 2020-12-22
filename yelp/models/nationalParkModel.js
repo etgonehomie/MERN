@@ -6,7 +6,7 @@ const ParkSchema = new Schema({
   description: String,
   location: String,
   imageURL: String,
-  price: String,
+  price: Number,
 });
 
 module.exports = mongoose.model("Park", ParkSchema);

@@ -23,7 +23,7 @@ const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDatabase = async () => {
   await NationalPark.deleteMany({});
-  console.log("Deleted all previous database entries.");
+  console.log("⛔ Deleted all previous database entries.");
   for (let i = 0; i < numberOfParks; i++) {
     const sampleCity = sample(cities);
 
@@ -33,6 +33,7 @@ const seedDatabase = async () => {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et fugiat reprehenderit, distinctio laboriosam officia ut perspiciatis excepturi soluta suscipit tenetur, nam voluptas quidem quibusdam. Rem, nisi unde? Veritatis, architecto hic? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint et consequatur quibusdam veritatis cum sunt hic architecto nihil fuga porro voluptatum repudiandae excepturi iure deserunt quod numquam ratione, vel non.",
       imageURL: "https://source.unsplash.com/collection/8187675",
+      price: 10,
     });
     await park.save();
   }
@@ -41,7 +42,7 @@ const seedDatabase = async () => {
 // Seed the database then close the connection
 seedDatabase().then(() => {
   console.log(
-    `Seeded new database entries successfully: ${numberOfParks} national parks`
+    `✅ Seeded new database entries successfully: ${numberOfParks} national parks`
   );
   mongoose.connection.close();
 });

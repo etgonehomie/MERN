@@ -79,13 +79,9 @@ app.get("/national-parks/:id/edit", async (req, res) => {
 app.put("/national-parks/:id", async (req, res) => {
   console.log("reached PUT route");
   const { id } = req.params;
-  const { title, location } = req.body;
-  const update = {
-    title: title,
-    location: location,
-  };
+  const inputtedPark = req.body;
   const options = { new: true };
-  const park = await NationalPark.findByIdAndUpdate(id, update, options);
+  const park = await NationalPark.findByIdAndUpdate(id, inputtedPark, options);
   res.render("national-parks/show", { park });
 });
 
