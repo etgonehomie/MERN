@@ -1,16 +1,17 @@
 <%- layout('./templates/boilerplate') %>
 <h1><%= park.title %></h1>
 <h2><%= park.location %></h2>
-<div class="mt-5">
-  <p class="mb-3"><%= park.description %></p>
-  <img class="card-img" src="<%= park.imageURL %> " alt="random-park" />
+<div class="d-flex my-3">
+  <div class="col-md-1">
+    <button class="btn btn-dark">
+      <a href="/national-parks/<%= park._id %>/edit">Edit</a>
+    </button>
+  </div>
+  <div class="col-md-1">
+    <%- include('../partials/deletePark', {_id: park._id}) %>
+  </div>
 </div>
-<div>
-  <a href="/national-parks/<%= park._id %>/edit">Edit</a>
-</div>
-<div>
-  <form action="/national-parks/<%= park._id %>?_method=DELETE" method="POST">
-    <button>DELETE</button>
-  </form>
-</div>
-<p><a href="/national-parks">List of Parks</a></p>
+<p class="mb-3"><%= park.description %></p>
+<img class="card-img" src="<%= park.imageURL %> " alt="random-park" />
+
+<p><a href="/national-parks">Back to List</a></p>

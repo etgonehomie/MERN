@@ -7,9 +7,10 @@
       <div class="card-body">
         <h5 class="card-title"><%= park.title %></h5>
         <p class="card-text"><%= park.description %></p>
-        <a href="/national-parks/<%= park._id %>" class="btn btn-primary"
-          ><%= park.location %></a
-        >
+        <a href="/national-parks/<%= park._id %>" class="btn btn-primary">
+          <%=park.location%>
+        </a>
+        <%- include('../partials/deletePark', {_id: park._id}) %>
       </div>
     </div>
   </div>
