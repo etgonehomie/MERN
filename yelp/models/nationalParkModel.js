@@ -5,6 +5,7 @@ const ParkSchema = new Schema({
   title: String,
   description: String,
   location: String,
+  imageURL: String,
   price: String,
 });
 
