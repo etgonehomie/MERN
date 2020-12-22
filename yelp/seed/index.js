@@ -31,7 +31,7 @@ const seedDatabase = async () => {
       title: `${sample(descriptors)} ${sample(places)}`,
       location: `${sampleCity.city}, ${sampleCity.state}`,
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et fugiat reprehenderit, distinctio laboriosam officia ut perspiciatis excepturi soluta suscipit tenetur, nam voluptas quidem quibusdam. Rem, nisi unde? Veritatis, architecto hic? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint et consequatur quibusdam veritatis cum sunt hic architecto nihil fuga porro voluptatum repudiandae excepturi iure deserunt quod numquam ratione, vel non.",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et fugiat reprehenderit, distinctio laboriosam officia ut perspiciatis excepturi soluta suscipit tenetur, nam voluptas quidem quibusdam. Rem, nisi unde? Veritatis, architecto hic? Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       imageURL: "https://source.unsplash.com/collection/8187675",
       price: 10,
     });

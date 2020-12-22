@@ -53,11 +53,7 @@ app.get("/national-parks/new", (req, res) => {
 });
 
 app.post("/national-parks", async (req, res) => {
-  const { title, location } = req.body;
-  const park = new NationalPark({
-    title: title,
-    location: location,
-  });
+  const park = new NationalPark(req.body);
   await park.save();
   res.redirect("/national-parks");
 });
