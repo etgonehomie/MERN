@@ -83,18 +83,33 @@ app.post(
   })
 );
 
+/**
+ * 2a. PASS ERROR TO DEFAULT ERROR HANDLER USING NEXT
+ *      You can pass an error into the `next()` function so that whatever
+ *      default error handler defined will be used.
+ *      NOTE: You must use return as next() doesn't end execution of a function.
+ */
 app.get(
   "/products/:id",
   wrapAsync(async (req, res, next) => {
     const { id } = req.params;
     const product = await Product.findById(id);
     if (!product) {
-      throw new AsyncError("productNotFound");
+      return next(new AsyncError("productNotFound"));
     }
     res.render("products/show", { product });
   })
 );
 
+/**
+ * 2b. THROW AN ERROR:
+ *      This automatically stops the function so do not need to include
+ *      the `return` statement.
+ *
+ *      Since this is in a wrapper function, the catch block in the wrapper
+ *      function will handle the error, which is to call the next(err), which
+ *      calls the default error handler
+ */
 app.get(
   "/products/:id/edit",
   wrapAsync(async (req, res, next) => {
@@ -128,14 +143,22 @@ app.delete(
   })
 );
 
+/**
+ * 3. HANDLING SPECIFIC ERRORS.
+ *      You can use the `err.name` to handle specific errors as needed.
+ *      This is the Validation error handler for if the err.name = ValidationError
+ *      Can make a similar one for CastError if desired
+ */
 const handleValidationErr = (err) => {
   console.dir(err);
   //In a real app, we would do a lot more here...
-  return new AppError(`Validation Failed...${err.message}`, 400);
+  return new Error(
+    `You have entered the twlight zone where you can handle specific 'err.name'. This one is a Mongoose Validation Error with message...${err.message}`
+  );
 };
 
 /**
- * 3. ERROR CHAINING/SPECIFIC CALLOUT -
+ * 4. ERROR CHAINING/SPECIFIC CALLOUT -
  *      Used to show chaining of error handling and
  *      defining certain handlers when a specific error is found
  */
