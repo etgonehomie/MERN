@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const path = require("path");
 const ejsMate = require("ejs-mate");
+const { parkSchema } = require("./models/Validations/ParkSchema");
 const c = require("./constants");
 const NationalPark = require("./models/nationalParkModel");
 const methodOverride = require("method-override");
@@ -57,6 +58,17 @@ app.get("/national-parks/new", (req, res) => {
 app.post(
   "/national-parks",
   catchAsync(async (req, res) => {
+    // res.send(req.body);
+    console.log(`validated now....`);
+    const { error } = parkSchema.validate(req.body);
+    console.log(`validated with error: ${error}`);
+    if (error) {
+      console.log("throwing error right now");
+      const msg = error.details.map((el) => el.message).join(",");
+      console.log(`error msg: ${msg}`);
+      throw new ExpressError("SchemaError", msg);
+    }
+    console.log("saving new park now");
     const park = new NationalPark(req.body);
     await park.save();
     res.redirect("/national-parks");
@@ -111,8 +123,13 @@ app.delete(
 );
 
 // Error handling
+app.use("*", (req, res, next) => {
+  next(new ExpressError("NoPageFoundError"));
+});
+
 app.use((err, req, res, next) => {
   console.log(`Error Name: ${err.name}`);
+  err = new ExpressError(err.name);
   res.render("error", { err });
 });
 // Listen to any requests to the server

@@ -1,5 +1,5 @@
 class ExpressError extends Error {
-  constructor(errorType) {
+  constructor(errorType, message = undefined) {
     super();
     switch (errorType) {
       case "CastError":
@@ -7,9 +7,14 @@ class ExpressError extends Error {
         this.message = "Could not find national park that you were inputting";
         break;
 
-      case "noPageFoundError":
+      case "SchemaError":
+        this.status = 500;
+        this.message = message;
+        break;
+
+      case "NoPageFoundError":
         this.status = 404;
-        this.message = "Could not find national park that you were inputting";
+        this.message = "No such page exists homiee!!";
         break;
 
       case "ValidationError":
@@ -27,6 +32,7 @@ class ExpressError extends Error {
         this.message = "Beboop...beboop...Unknown error...";
         break;
     }
+    this.name = errorType;
   }
 }
 
