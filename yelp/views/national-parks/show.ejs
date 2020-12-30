@@ -1,17 +1,26 @@
 <%- layout('./templates/boilerplate') %>
-<h1><%= park.title %></h1>
-<h2><%= park.location %> ($<%= park.price %>/night)</h2>
-<div class="d-flex my-3">
-  <div class="col-md-1 d-inline">
-    <button class="btn btn-dark">
-      <a href="/national-parks/<%= park._id %>/edit">Edit</a>
-    </button>
-  </div>
-  <div class="col-md-1">
-    <%- include('../partials/deletePark', {_id: park._id}) %>
+<div class="d-flex justify-content-center">
+  <div class="col-6 card">
+    <div class="card-body">
+      <h5 class="card-title"><%= park.title %></h5>
+      <h6><%= park.location %> ($<%= park.price %>/night)</h6>
+      <p class="card-text"><%= park.description %></p>
+      <p class="card-text">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </p>
+    </div>
+    <img class="card-img" src="<%= park.imageURL %> " alt="random-park" />
+    <div class="d-flex my-3">
+      <div class="col-md-1 d-inline">
+        <button class="btn btn-dark">
+          <a href="/national-parks/<%= park._id %>/edit">Edit</a>
+        </button>
+      </div>
+      <div class="col-md-1">
+        <%- include('../partials/deletePark', {_id: park._id}) %>
+      </div>
+    </div>
   </div>
 </div>
-<p class="mb-3"><%= park.description %></p>
-<img class="card-img" src="<%= park.imageURL %> " alt="random-park" />
 
-<p><a href="/national-parks">Back to List</a></p>
+<p class="text-center"><a href="/national-parks">Back to List</a></p>
