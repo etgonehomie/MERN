@@ -1,8 +1,8 @@
 <%- layout('./templates/boilerplate') %>
 <h1><%= park.title %></h1>
-<h2><%= park.location %></h2>
+<h2><%= park.location %> ($<%= park.price %>/night)</h2>
 <div class="d-flex my-3">
-  <div class="col-md-1">
+  <div class="col-md-1 d-inline">
     <button class="btn btn-dark">
       <a href="/national-parks/<%= park._id %>/edit">Edit</a>
     </button>

@@ -1,0 +1,11 @@
+<%- layout('./templates/boilerplate') %>
+<div class="d-flex justify-content-center">
+  <div class="col-6 card border-danger mb-3">
+    <div class="card-header text-center">UHHH OOHHH!!</div>
+    <div class="card-body text-danger">
+      <h5 class="card-title text-center"><%= err.name %></h5>
+      <p class="card-text text-center"><%= err.message %></p>
+      <p class="card-text"><%= err.stack %></p>
+    </div>
+  </div>
+</div>

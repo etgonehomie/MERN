@@ -1,6 +1,11 @@
 <%- layout('./templates/boilerplate') %>
 <h1>Create a new park</h1>
-<form class="row g-3 mt-3" action="/national-parks" method="POST">
+<form
+  class="row g-3 mt-3 needs-validation"
+  action="/national-parks"
+  method="POST"
+  novalidate
+>
   <!-- Park Name -->
   <div class="col-md-6">
     <label for="title" class="form-label">Park Name</label>
@@ -10,6 +15,7 @@
       id="title"
       name="title"
       placeholder="Green Grassy Hill"
+      required
     />
   </div>
 
@@ -22,6 +28,7 @@
       id="location"
       name="location"
       placeholder="City, State"
+      required
     />
   </div>
 
@@ -32,6 +39,7 @@
       class="form-control"
       name="description"
       id="description"
+      required
     ></textarea>
   </div>
 
@@ -45,7 +53,8 @@
         class="form-control"
         id="price"
         name="price"
-        placeholder="Unit Price"
+        placeholder="$0.00"
+        required
       />
     </div>
   </div>
@@ -58,7 +67,8 @@
       class="form-control"
       id="imageURL"
       name="imageURL"
-      placeholder="Image link here"
+      placeholder="Image URL here"
+      required
     />
   </div>
 

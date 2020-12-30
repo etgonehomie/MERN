@@ -5,12 +5,17 @@
     <div class="card">
       <img src="<%= park.imageURL %> " class="card-img-top" alt="random park" />
       <div class="card-body">
-        <h5 class="card-title"><%= park.title %></h5>
+        <h5 class="card-title"><%= park.title %> ($<%= park.price %>/night)</h5>
         <p class="card-text"><%= park.description %></p>
-        <a href="/national-parks/<%= park._id %>" class="btn btn-primary">
-          <%=park.location%>
-        </a>
-        <%- include('../partials/deletePark', {_id: park._id}) %>
+        <div class="d-inline-flex text-center">
+          <a
+            href="/national-parks/<%= park._id %>"
+            class="btn btn-primary mx-2"
+          >
+            <%=park.location%>
+          </a>
+          <%- include('../partials/deletePark', {_id: park._id}) %>
+        </div>
       </div>
     </div>
   </div>

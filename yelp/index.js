@@ -6,6 +6,8 @@ const c = require("./constants");
 const NationalPark = require("./models/nationalParkModel");
 const methodOverride = require("method-override");
 const app = express();
+const ExpressError = require("./models/ExpressError");
+const catchAsync = require("./utilities/catchWrapper");
 
 // Set view Engine
 app.engine("ejs", ejsMate);
@@ -52,42 +54,67 @@ app.get("/national-parks/new", (req, res) => {
   res.render("national-parks/create");
 });
 
-app.post("/national-parks", async (req, res) => {
-  const park = new NationalPark(req.body);
-  await park.save();
-  res.redirect("/national-parks");
-});
+app.post(
+  "/national-parks",
+  catchAsync(async (req, res) => {
+    const park = new NationalPark(req.body);
+    await park.save();
+    res.redirect("/national-parks");
+  })
+);
 
 // Display Park details
-app.get("/national-parks/:id", async (req, res) => {
-  const { id } = req.params;
-  const park = await NationalPark.findById(id);
-  res.render("national-parks/show", { park });
-});
+app.get(
+  "/national-parks/:id",
+  catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const park = await NationalPark.findById(id);
+    console.log(`found id of ${id}`);
+    res.render("national-parks/show", { park });
+  })
+);
 
 // Edit existing Park details
-app.get("/national-parks/:id/edit", async (req, res) => {
-  const { id } = req.params;
-  const park = await NationalPark.findById(id);
-  res.render("national-parks/edit", { park });
-});
+app.get(
+  "/national-parks/:id/edit",
+  catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const park = await NationalPark.findById(id);
+    res.render("national-parks/edit", { park });
+  })
+);
 
-app.put("/national-parks/:id", async (req, res) => {
-  console.log("reached PUT route");
-  const { id } = req.params;
-  const inputtedPark = req.body;
-  const options = { new: true };
-  const park = await NationalPark.findByIdAndUpdate(id, inputtedPark, options);
-  res.render("national-parks/show", { park });
-});
+app.put(
+  "/national-parks/:id",
+  catchAsync(async (req, res) => {
+    console.log("reached PUT route");
+    const { id } = req.params;
+    const inputtedPark = req.body;
+    const options = { new: true };
+    const park = await NationalPark.findByIdAndUpdate(
+      id,
+      inputtedPark,
+      options
+    );
+    res.render("national-parks/show", { park });
+  })
+);
 
 // Delete existing park
-app.delete("/national-parks/:id", async (req, res) => {
-  const { id } = req.params;
-  const park = await NationalPark.findByIdAndDelete(id);
-  res.redirect("/national-parks");
-});
+app.delete(
+  "/national-parks/:id",
+  catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const park = await NationalPark.findByIdAndDelete(id);
+    res.redirect("/national-parks");
+  })
+);
 
+// Error handling
+app.use((err, req, res, next) => {
+  console.log(`Error Name: ${err.name}`);
+  res.render("error", { err });
+});
 // Listen to any requests to the server
 app.listen(c.serverPort, () => {
   console.log(`Listening on server Port# ${c.serverPort}`);
