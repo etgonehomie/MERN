@@ -1,5 +1,5 @@
 class ExpressError extends Error {
-  constructor(errorType, message = undefined) {
+  constructor(errorType, msg) {
     super();
     switch (errorType) {
       case "CastError":
@@ -8,8 +8,9 @@ class ExpressError extends Error {
         break;
 
       case "SchemaError":
+        console.log(`expressError msg: ${msg}`);
         this.status = 500;
-        this.message = message;
+        this.message = msg;
         break;
 
       case "NoPageFoundError":

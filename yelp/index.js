@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 const express = require("express");
 const path = require("path");
 const ejsMate = require("ejs-mate");
-const { parkSchema } = require("./models/Validations/ParkSchema");
+const {
+  parkValidationSchema,
+} = require("./models/Validations/ParkValidationSchema");
 const c = require("./constants");
 const NationalPark = require("./models/nationalParkModel");
 const methodOverride = require("method-override");
@@ -55,21 +57,23 @@ app.get("/national-parks/new", (req, res) => {
   res.render("national-parks/create");
 });
 
+const parkValidation = (req, res, next) => {
+  const { error } = parkValidationSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(",");
+    console.log(`error msg: ${msg}`);
+    console.log(req.body);
+    throw new ExpressError("SchemaError", msg);
+  }
+  next();
+};
+
 app.post(
   "/national-parks",
+  parkValidation,
   catchAsync(async (req, res) => {
-    // res.send(req.body);
-    console.log(`validated now....`);
-    const { error } = parkSchema.validate(req.body);
-    console.log(`validated with error: ${error}`);
-    if (error) {
-      console.log("throwing error right now");
-      const msg = error.details.map((el) => el.message).join(",");
-      console.log(`error msg: ${msg}`);
-      throw new ExpressError("SchemaError", msg);
-    }
     console.log("saving new park now");
-    const park = new NationalPark(req.body);
+    const park = new NationalPark(req.body.park);
     await park.save();
     res.redirect("/national-parks");
   })
@@ -98,10 +102,11 @@ app.get(
 
 app.put(
   "/national-parks/:id",
+  parkValidation,
   catchAsync(async (req, res) => {
     console.log("reached PUT route");
     const { id } = req.params;
-    const inputtedPark = req.body;
+    const inputtedPark = req.body.park;
     const options = { new: true };
     const park = await NationalPark.findByIdAndUpdate(
       id,
@@ -129,7 +134,7 @@ app.use("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
   console.log(`Error Name: ${err.name}`);
-  err = new ExpressError(err.name);
+  err = new ExpressError(err.name, err.message);
   res.render("error", { err });
 });
 // Listen to any requests to the server
