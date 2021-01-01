@@ -27,6 +27,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 // Homepage for products
+app.get("/", (req, res) => {
+  res.redirect("/products");
+});
+
 app.get("/products", async (req, res) => {
   const { category } = req.query;
   if (category && produceCategories.includes(category)) {
@@ -68,7 +72,7 @@ app.get("/products/:id/edit", async (req, res) => {
 
 app.put("/products/:id", async (req, res) => {
   const { id } = req.params;
-  const product = await Product.findByIdAndUpdate(id, req.body, {
+  const product = await Produce.findByIdAndUpdate(id, req.body, {
     runValidators: true,
     new: true,
   });
@@ -78,6 +82,10 @@ app.put("/products/:id", async (req, res) => {
 // Delete a product
 app.delete("/products/:id", async (req, res) => {
   const { id } = req.params;
-  const deletedProduct = await Product.findByIdAndDelete(id);
+  const deletedProduct = await Produce.findByIdAndDelete(id);
   res.redirect("/products");
+});
+
+app.listen(3000, () => {
+  console.log("APP IS LISTENING ON PORT 3000!");
 });

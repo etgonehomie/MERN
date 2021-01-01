@@ -66,6 +66,6 @@ const farmStandSchema = new Schema({
   ],
 });
 
-module.exports.Produce = mongoose.model("Produce", produceSchema);
-module.exports.FarmStand = mongoose.model("FarmStand", farmStandSchema);
-module.exports = { produceCategories };
+const Produce = mongoose.model("Produce", produceSchema);
+const FarmStand = mongoose.model("FarmStand", farmStandSchema);
+module.exports = { produceCategories, Produce, FarmStand };

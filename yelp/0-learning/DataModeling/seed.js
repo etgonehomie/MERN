@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Product = require("./models/product");
+const { FarmStand, Produce, produceCategories } = require("./schemas");
 
 mongoose
   .connect("mongodb://localhost:27017/farmStand2", {
@@ -31,31 +31,31 @@ const seedProducts = [
   {
     name: "Fairy Eggplant",
     price: 1.0,
-    category: "vegetable",
+    category: "Vegetable",
   },
   {
     name: "Organic Goddess Melon",
     price: 4.99,
-    category: "fruit",
+    category: "Fruit",
   },
   {
     name: "Organic Mini Seedless Watermelon",
     price: 3.99,
-    category: "fruit",
+    category: "Fruit",
   },
   {
     name: "Organic Celery",
     price: 1.5,
-    category: "vegetable",
+    category: "Vegetable",
   },
   {
     name: "Chocolate Whole Milk",
     price: 2.69,
-    category: "dairy",
+    category: "Dairy",
   },
 ];
 
-Product.insertMany(seedProducts)
+Produce.insertMany(seedProducts)
   .then((res) => {
     console.log(res);
   })
@@ -63,4 +63,16 @@ Product.insertMany(seedProducts)
     console.log(e);
   });
 
+// const p = new Produce({
+//   name: "Ruby Grapefruit",
+//   price: 1.99,
+//   category: "Fruit",
+// });
+// p.save()
+//   .then((p) => {
+//     console.log(p);
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
 mongoose.connection.close();
