@@ -45,10 +45,14 @@ mongoose
     );
     console.log(`Error: ${e}`);
   });
-
+const produceCategories = ["Fruit", "Vegetable", "Dairy", "Nuts"];
 const produceSchema = new Schema({
   name: String,
   price: String,
+  category: {
+    type: String,
+    enum: produceCategories,
+  },
 });
 
 const farmStandSchema = new Schema({
@@ -62,5 +66,6 @@ const farmStandSchema = new Schema({
   ],
 });
 
-const Produce = mongoose.model("Produce", produceSchema);
-const FarmStand = mongoose.model("FarmStand", farmStandSchema);
+module.exports.Produce = mongoose.model("Produce", produceSchema);
+module.exports.FarmStand = mongoose.model("FarmStand", farmStandSchema);
+module.exports = { produceCategories };
