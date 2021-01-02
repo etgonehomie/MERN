@@ -51,13 +51,11 @@ app.get("/farms/:id", async (req, res) => {
   res.render("farms/show", { farm });
 });
 
-// Delete a farm and its associated products
+// Delete a farm
+// The schmea.js middleware will delete the associated produce in this commit
 app.delete("/farms/:id", async (req, res) => {
   const { id } = req.params;
   const farm = await FarmStand.findById(id);
-  for (produceId of farm.produce) {
-    await Produce.findByIdAndDelete(produceId);
-  }
   await FarmStand.findByIdAndDelete(id);
   res.redirect("/farms");
 });

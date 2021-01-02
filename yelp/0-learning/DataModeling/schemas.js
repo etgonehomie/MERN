@@ -71,6 +71,15 @@ const farmStandSchema = new Schema({
   ],
 });
 
+// Mongoose middleware that is totally seperate from Express middleware
+// Need to call post the query, because we need the farm data from the query
+farmStandSchema.post("findOneAndDelete", async function (farm) {
+  if (farm.produce.length) {
+    const res = await Produce.deleteMany({ _id: { $in: farm.produce } });
+    console.log(res);
+  }
+});
+
 const Produce = mongoose.model("Produce", produceSchema);
 const FarmStand = mongoose.model("FarmStand", farmStandSchema);
 module.exports = { produceCategories, Produce, FarmStand };
