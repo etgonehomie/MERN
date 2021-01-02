@@ -53,11 +53,16 @@ const produceSchema = new Schema({
     type: String,
     enum: produceCategories,
   },
+  farmStand: {
+    type: Schema.Types.ObjectId,
+    ref: "FarmStand",
+  },
 });
 
 const farmStandSchema = new Schema({
   name: String,
-  location: String,
+  city: String,
+  email: String,
   produce: [
     {
       type: Schema.Types.ObjectId,

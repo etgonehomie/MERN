@@ -27,6 +27,7 @@ mongoose
 //         console.log(e)
 //     })
 
+const seedFarms = [{}];
 const seedProducts = [
   {
     name: "Fairy Eggplant",
@@ -55,6 +56,7 @@ const seedProducts = [
   },
 ];
 
+Produce.deleteMany({});
 Produce.insertMany(seedProducts)
   .then((res) => {
     console.log(res);

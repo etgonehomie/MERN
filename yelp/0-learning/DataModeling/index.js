@@ -26,11 +26,24 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-// Homepage for products
-app.get("/", (req, res) => {
-  res.redirect("/products");
+// Homepage for farms
+app.get("/farms", async (req, res) => {
+  const farms = await FarmStand.find();
+  res.render("farms/index", { farms });
 });
 
+// Display a farm
+app.get("/farms/:id", async (req, res) => {
+  const { id } = req.params;
+  const farm = await FarmStand.findById(id).populate("produce");
+  res.render("farms/show", { farm });
+});
+
+// Create a farm
+app.get("/farms/new", (req, res) => {
+  res.render("farms/new");
+});
+// Homepage for products
 app.get("/products", async (req, res) => {
   const { category } = req.query;
   if (category && produceCategories.includes(category)) {
