@@ -17,7 +17,11 @@
     <h2>Produce Available</h2>
     <ul>
       <% for(produce of farm.produce) { %>
-      <li><%= produce.name %>@ $<%= produce.price %></li>
+      <li>
+        <a href="/products/<%= produce._id %>/edit"
+          ><%= produce.name %>@ $<%= produce.price %></a
+        >
+      </li>
       <% } %>
     </ul>
 
@@ -25,6 +29,6 @@
     <form action="/farms/<%=farm._id%>?_method=DELETE" method="POST">
       <button>Delete Farm</button>
     </form>
-    <a href="/farms/new">Add Product</a>
+    <a href="/farms/<%= farm._id %>/products/new">Add Product</a>
   </body>
 </html>

@@ -7,14 +7,24 @@
   </head>
 
   <body>
-    <h1>Add A Product</h1>
-    <form action="/products" method="POST">
+    <h1>Add A Product for Farmstand: <%= farm.name %></h1>
+    <form action="/farms/<%= farm._id %>/products" method="POST">
       <label for="name">Product Name</label>
-      <input type="text" name="name" id="name" placeholder="product name" />
+      <input
+        type="text"
+        name="produce[name]"
+        id="name"
+        placeholder="Enticing Naming"
+      />
       <label for="price">Price (Unit)</label>
-      <input type="number" id="price" name="price" placeholder="price" />
+      <input
+        type="number"
+        id="price"
+        name="produce[price]"
+        placeholder="$0.00"
+      />
       <label for="category">Select Category</label>
-      <select name="category" id="category">
+      <select name="produce[category]" id="category" placeholder="Category">
         <% for(let category of produceCategories){ %>
         <option value="<%=category%>"><%=category%></option>
         <% } %>

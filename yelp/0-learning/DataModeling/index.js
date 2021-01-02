@@ -32,6 +32,18 @@ app.get("/farms", async (req, res) => {
   res.render("farms/index", { farms });
 });
 
+// Create a farm
+app.get("/farms/new", (req, res) => {
+  res.render("farms/new");
+});
+
+app.post("/farms", async (req, res) => {
+  const newFarm = new FarmStand(req.body.farm);
+  newFarm.produce = [];
+  await newFarm.save();
+  res.redirect(`/farms/${newFarm._id}`);
+});
+
 // Display a farm
 app.get("/farms/:id", async (req, res) => {
   const { id } = req.params;
@@ -39,10 +51,17 @@ app.get("/farms/:id", async (req, res) => {
   res.render("farms/show", { farm });
 });
 
-// Create a farm
-app.get("/farms/new", (req, res) => {
-  res.render("farms/new");
+// Delete a farm and its associated products
+app.delete("/farms/:id", async (req, res) => {
+  const { id } = req.params;
+  const farm = await FarmStand.findById(id);
+  for (produceId of farm.produce) {
+    await Produce.findByIdAndDelete(produceId);
+  }
+  await FarmStand.findByIdAndDelete(id);
+  res.redirect("/farms");
 });
+
 // Homepage for products
 app.get("/products", async (req, res) => {
   const { category } = req.query;
@@ -54,15 +73,23 @@ app.get("/products", async (req, res) => {
   res.render("products/index", { products, category: "All" });
 });
 
-// Create a new product
-app.get("/products/new", (req, res) => {
-  res.render("products/new", { produceCategories });
+// Create a new product for a specific farm
+app.get("/farms/:farm_id/products/new", async (req, res) => {
+  const { farm_id } = req.params;
+  const farm = await FarmStand.findById(farm_id);
+  res.render("products/new", { produceCategories, farm });
 });
 
-app.post("/products", async (req, res) => {
-  const newProduct = new Produce(req.body);
+app.post("/farms/:farm_id/products", async (req, res) => {
+  const { farm_id } = req.params;
+  const farm = await FarmStand.findById(farm_id);
+  const newProduct = new Produce(req.body.produce);
+  newProduct.farmStand = farm._id;
+  farm.produce.push(newProduct);
   await newProduct.save();
-  res.redirect(`/products/${newProduct._id}`);
+  await farm.save();
+  console.log(farm);
+  res.redirect(`/farms/${farm._id}`);
 });
 
 // Display a product
@@ -74,7 +101,7 @@ app.get("/products/:id", async (req, res) => {
   }
 });
 
-// Update a product
+// Update a product for a specific farm
 app.get("/products/:id/edit", async (req, res) => {
   const { id } = req.params;
   const product = await Produce.findById(id);
@@ -85,11 +112,14 @@ app.get("/products/:id/edit", async (req, res) => {
 
 app.put("/products/:id", async (req, res) => {
   const { id } = req.params;
-  const product = await Produce.findByIdAndUpdate(id, req.body, {
+  const product = await Produce.findByIdAndUpdate(id, req.body.produce, {
     runValidators: true,
     new: true,
   });
-  res.redirect(`/products/${product._id}`);
+  await product.save();
+  console.log(product);
+
+  res.redirect(`/farms/${product.farmStand}`);
 });
 
 // Delete a product
