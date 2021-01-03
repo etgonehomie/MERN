@@ -157,6 +157,26 @@ app.post(
     res.redirect(`/national-parks/${park._id}`);
   })
 );
+
+// Edit review page
+app.get(
+  "/reviews/:id",
+  catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const review = await Review.findById(id);
+    res.render("reviews/edit", { review, validRatings });
+  })
+);
+
+app.put(
+  "/reviews/:id",
+  catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const options = { new: true };
+    const review = await Review.findByIdAndUpdate(id, req.body.review, options);
+    res.redirect("/national-parks");
+  })
+);
 // Error handling
 app.use("*", (req, res, next) => {
   next(new ExpressError("NoPageFoundError"));
@@ -164,6 +184,7 @@ app.use("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
   console.log(`Error Name: ${err.name}`);
+  console.log(err.stack);
   err = new ExpressError(err.name, err.message);
   res.render("error", { err });
 });

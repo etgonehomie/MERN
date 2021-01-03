@@ -54,7 +54,10 @@
     <div class="card-body">
       <% for(review of park.reviews) { %>
       <h5 class="card-title">
-        <%= review.title %> (<%= review.rating %> Stars)
+        <a href="/reviews/<%= review._id %> " class="text-decoration-none"
+          ><%= review.title %></a
+        >
+        (<%= review.rating %> Stars)
       </h5>
       <p class="card-text"><%= review.description %></p>
       <% } %>

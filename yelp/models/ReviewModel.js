@@ -23,7 +23,7 @@ module.exports = { Review, validRatings };
  * X 3. Create a PUT ROUTE to save the NEW review
  * 4. Create a GET ROUTE to show the NEW review
  * 5. Create a VIEW to SHOW the new reivew
- * 6. Create a GET ROUTE to EDIT the reveiw
+ * X 6. Create a GET ROUTE to EDIT the reveiw
  * 7. Create a VIEW to EDIT the review
  * 8. Create a PUT ROUTE to EDIT the reveiw
  * 9. Create a DELETE ROUTE to DELETE the review
