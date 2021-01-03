@@ -6,7 +6,8 @@ const {
   parkValidationSchema,
 } = require("./models/Validations/ParkValidationSchema");
 const c = require("./constants");
-const NationalPark = require("./models/nationalParkModel");
+const NationalPark = require("./models/NationalParkModel");
+const { Review, validRatings } = require("./models/ReviewModel");
 const methodOverride = require("method-override");
 const app = express();
 const ExpressError = require("./models/ExpressError");
@@ -84,8 +85,7 @@ app.get(
   "/national-parks/:id",
   catchAsync(async (req, res) => {
     const { id } = req.params;
-    const park = await NationalPark.findById(id);
-    console.log(`found id of ${id}`);
+    const park = await NationalPark.findById(id).populate("reviews");
     res.render("national-parks/show", { park });
   })
 );
@@ -127,6 +127,36 @@ app.delete(
   })
 );
 
+// COMMENT ROUTES
+
+// Create a new review
+app.get(
+  "/national-parks/:park_id/reviews/new",
+  catchAsync(async (req, res) => {
+    const { park_id } = req.params;
+    const park = await NationalPark.findById(park_id);
+    console.log(park);
+    res.render("reviews/create", { park, validRatings });
+  })
+);
+
+// Save the new review
+app.post(
+  "/national-parks/:park_id/reviews",
+  catchAsync(async (req, res) => {
+    const { park_id } = req.params;
+    const park = await NationalPark.findById(park_id);
+    const review = new Review(req.body.review);
+    park.reviews.push(review._id);
+    await park.save();
+    await review.save();
+    console.log("this is the new review:");
+    console.log(review);
+    console.log("this is the new park:");
+    console.log(park);
+    res.redirect(`/national-parks/${park._id}`);
+  })
+);
 // Error handling
 app.use("*", (req, res, next) => {
   next(new ExpressError("NoPageFoundError"));

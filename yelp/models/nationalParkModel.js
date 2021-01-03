@@ -7,6 +7,12 @@ const ParkSchema = new Schema({
   location: String,
   imageURL: String,
   price: Number,
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Park", ParkSchema);

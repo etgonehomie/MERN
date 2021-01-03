@@ -1,26 +1,65 @@
 <%- layout('./templates/boilerplate') %>
 <div class="d-flex justify-content-center">
+  <!-- National Park Details -->
   <div class="col-6 card">
     <div class="card-body">
+      <img
+        class="card-img mb-4"
+        src="<%= park.imageURL %> "
+        alt="random-park"
+      />
       <h5 class="card-title"><%= park.title %></h5>
       <h6><%= park.location %> ($<%= park.price %>/night)</h6>
       <p class="card-text"><%= park.description %></p>
-      <p class="card-text">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </p>
     </div>
-    <img class="card-img" src="<%= park.imageURL %> " alt="random-park" />
     <div class="d-flex my-3">
+      <!-- Edit Button -->
       <div class="col-md-1 d-inline">
-        <button class="btn btn-dark">
-          <a href="/national-parks/<%= park._id %>/edit">Edit</a>
+        <button class="btn btn-primary">
+          <a
+            class="text-decoration-none"
+            href="/national-parks/<%= park._id %>/edit"
+            >Edit</a
+          >
         </button>
       </div>
+
+      <!-- New Review Button -->
+      <div class="col-md-1 d-inline">
+        <button class="btn btn-primary">
+          <a
+            class="text-decoration-none"
+            href="/national-parks/<%= park._id %>/reviews/new"
+            >New Review</a
+          >
+        </button>
+      </div>
+
+      <!-- Delete Button -->
       <div class="col-md-1">
         <%- include('../partials/deletePark', {_id: park._id}) %>
       </div>
     </div>
+    <p class="card-text">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </p>
   </div>
 </div>
 
+<!-- Reviews List -->
+<% if (park.reviews.length) { %>
+<div class="d-flex-col mt-4">
+  <h1>Reviews</h1>
+  <div class="col-6 card">
+    <div class="card-body">
+      <% for(review of park.reviews) { %>
+      <h5 class="card-title">
+        <%= review.title %> (<%= review.rating %> Stars)
+      </h5>
+      <p class="card-text"><%= review.description %></p>
+      <% } %>
+    </div>
+  </div>
+</div>
+<% } %>
 <p class="text-center"><a href="/national-parks">Back to List</a></p>
