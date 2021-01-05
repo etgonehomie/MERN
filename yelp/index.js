@@ -199,8 +199,17 @@ app.delete(
     const { id } = req.params;
     const review = await Review.findByIdAndDelete(id);
     console.log("successfully deleted review");
-    res.send(`rieview Id: ${id}`);
-    // res.redirect("/");
+    const park = await NationalPark.findById(review.parkId);
+    console.log(park.reviews);
+
+    // TODO: Need to fix this. there is a bug and it is not filtering correctly
+    park.reviews = park.reviews.filter(function (value, index, arr) {
+      return value !== review._id;
+    });
+    await park.save();
+    console.log(park.reviews);
+    console.log("successfully updated park review");
+    res.redirect(`/national-parks/${park._id}`);
   })
 );
 // Error handling

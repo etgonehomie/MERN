@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const NationalPark = require("./NationalParkModel");
+const NationalPark = require("../models/NationalParkModel");
 const Schema = mongoose.Schema;
 
 const validRatings = [1, 2, 3, 4, 5];
@@ -12,17 +12,6 @@ const reviewSchema = new Schema({
   },
   description: String,
   parkId: Schema.Types.ObjectId,
-});
-
-// Delete all the reviews if you delete a park
-//TODO: Need to delete individual Review
-reviewSchema.post("findOneAndDelete", async function (review) {
-  console.log("trying to delete the review from park array");
-  const park = await NationalPark.findById(review._id);
-  park.reviews = park.reviews.filter(function (value, index, arr) {
-    return value !== review._id;
-  });
-  console.log("Deletion of review successful");
 });
 
 const Review = mongoose.model("Review", reviewSchema);
