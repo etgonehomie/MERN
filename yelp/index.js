@@ -164,13 +164,10 @@ app.post(
     const { park_id } = req.params;
     const park = await NationalPark.findById(park_id);
     const review = new Review(req.body.review);
+    review.parkId = park_id;
     park.reviews.push(review._id);
     await park.save();
     await review.save();
-    console.log("this is the new review:");
-    console.log(review);
-    console.log("this is the new park:");
-    console.log(park);
     res.redirect(`/national-parks/${park._id}`);
   })
 );
@@ -192,6 +189,18 @@ app.put(
     const options = { new: true };
     const review = await Review.findByIdAndUpdate(id, req.body.review, options);
     res.redirect("/national-parks");
+  })
+);
+
+// Delete review
+app.delete(
+  "/reviews/:id",
+  catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const review = await Review.findByIdAndDelete(id);
+    console.log("successfully deleted review");
+    res.send(`rieview Id: ${id}`);
+    // res.redirect("/");
   })
 );
 // Error handling
