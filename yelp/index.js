@@ -5,6 +5,9 @@ const ejsMate = require("ejs-mate");
 const {
   parkValidationSchema,
 } = require("./models/Validations/ParkValidationSchema");
+const {
+  reviewValidationSchema,
+} = require("./models/Validations/ReviewValidationSchema");
 const c = require("./constants");
 const NationalPark = require("./models/NationalParkModel");
 const { Review, validRatings } = require("./models/ReviewModel");
@@ -140,9 +143,23 @@ app.get(
   })
 );
 
+// Validate the review
+const reviewValidation = (req, res, next) => {
+  console.log(req.body);
+  const { error } = reviewValidationSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(",");
+    console.log(`error msg: ${msg}`);
+    console.log(req.body);
+    throw new ExpressError("SchemaError", msg);
+  }
+  next();
+};
+
 // Save the new review
 app.post(
   "/national-parks/:park_id/reviews",
+  reviewValidation,
   catchAsync(async (req, res) => {
     const { park_id } = req.params;
     const park = await NationalPark.findById(park_id);
