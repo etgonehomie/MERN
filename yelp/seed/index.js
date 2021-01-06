@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const c = require("../constants");
 const NationalPark = require("../models/nationalParkModel");
+const Review = require("../models/ReviewModel");
 const cities = require("./cities");
 const { descriptors, places } = require("./seedHelpers");
 
@@ -17,13 +18,14 @@ db.once("open", () => {
 });
 
 // Loop over n times to create a database full of parks
-const numberOfParks = 50;
+const numberOfParks = 10;
 
 const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDatabase = async () => {
   await NationalPark.deleteMany({});
-  console.log("⛔ Deleted all previous database entries.");
+  await Review.deleteMany({});
+  await console.log("⛔ Deleted all previous database entries.");
   for (let i = 0; i < numberOfParks; i++) {
     const sampleCity = sample(cities);
 
