@@ -1,5 +1,5 @@
 <%- layout('./templates/boilerplate') %>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-between">
   <!-- National Park Details -->
   <div class="col-6 card">
     <div class="card-body">
@@ -24,17 +24,6 @@
         </button>
       </div>
 
-      <!-- New Review Button -->
-      <div class="col-md-1 d-inline">
-        <button class="btn btn-primary">
-          <a
-            class="text-decoration-none"
-            href="/national-parks/<%= park._id %>/reviews/new"
-            >New Review</a
-          >
-        </button>
-      </div>
-
       <!-- Delete Button -->
       <div class="col-md-1">
         <%- include('../partials/deletePark', {_id: park._id}) %>
@@ -44,25 +33,83 @@
       <small class="text-muted">Last updated 3 mins ago</small>
     </p>
   </div>
-</div>
+  <div class="col-6">
+    <!-- REVIEWS for Park -->
+    <form
+      class="col-6 row g-3 mt-3 needs-validation"
+      action="/national-parks/<%= park._id %>/reviews"
+      method="POST"
+      novalidate
+    >
+      <!-- Review Title -->
+      <div class="col-12">
+        <label for="title" class="form-label">Summary</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="review[title]"
+          placeholder="Summary of Review"
+          required
+        />
+      </div>
 
-<!-- Reviews List -->
-<% if (park.reviews.length) { %>
-<div class="d-flex-col mt-4">
-  <h1>Reviews</h1>
-  <div class="col-6 card">
-    <div class="card-body">
-      <% for(review of park.reviews) { %>
-      <h5 class="card-title">
-        <a href="/reviews/<%= review._id %>" class="text-decoration-none"
-          ><%= review.title %></a
-        >
-        (<%= review.rating %> Stars)
-      </h5>
-      <p class="card-text"><%= review.description %></p>
-      <% } %>
+      <!-- Review Score -->
+      <div class="col-3">
+        <label for="rating" class="form-label">Rating</label>
+        <input
+          class="form-control"
+          min="1"
+          max="5"
+          type="range"
+          name="review[rating]"
+          id="rating"
+        />
+      </div>
+
+      <!-- Description -->
+      <div class="col-12">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          class="form-control"
+          name="review[description]"
+          id="description"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Save new review -->
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Save Review</button>
+      </div>
+    </form>
+
+    <!-- Reviews List -->
+    <% if (park.reviews.length) { %>
+    <div class="d-flex-col mt-4">
+      <h1>Reviews</h1>
+      <div class="col-6 card">
+        <div class="card-body">
+          <% for(review of park.reviews) { %>
+          <h5 class="card-title">
+            <a href="/reviews/<%= review._id %>" class="text-decoration-none"
+              ><%= review.title %></a
+            >
+            (<%= review.rating %> Stars)
+          </h5>
+          <p class="card-text"><%= review.description %></p>
+          <form
+            action="/national-parks/<%= park._id %>/reviews/<%= review._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-danger">Delete</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
     </div>
+    <% } %>
   </div>
 </div>
-<% } %>
+
 <p class="text-center"><a href="/national-parks">Back to List</a></p>

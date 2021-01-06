@@ -132,17 +132,6 @@ app.delete(
 
 // COMMENT ROUTES
 
-// Create a new review
-app.get(
-  "/national-parks/:park_id/reviews/new",
-  catchAsync(async (req, res) => {
-    const { park_id } = req.params;
-    const park = await NationalPark.findById(park_id);
-    console.log(park);
-    res.render("reviews/create", { park, validRatings });
-  })
-);
-
 // Validate the review
 const reviewValidation = (req, res, next) => {
   console.log(req.body);
@@ -164,7 +153,6 @@ app.post(
     const { park_id } = req.params;
     const park = await NationalPark.findById(park_id);
     const review = new Review(req.body.review);
-    review.parkId = park_id;
     park.reviews.push(review._id);
     await park.save();
     await review.save();
@@ -194,22 +182,20 @@ app.put(
 
 // Delete review
 app.delete(
-  "/reviews/:id",
+  "/national-parks/:park_id/reviews/:review_id",
   catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const review = await Review.findByIdAndDelete(id);
-    console.log("successfully deleted review");
-    const park = await NationalPark.findById(review.parkId);
-    console.log(park.reviews);
+    const { park_id, review_id } = req.params;
 
-    // TODO: Need to fix this. there is a bug and it is not filtering correctly
-    park.reviews = park.reviews.filter(function (value, index, arr) {
-      return value !== review._id;
+    likes: {
+      $in: ["vaporizing", "talking"];
+    }
+    const park = await NationalPark.findByIdAndUpdate(park_id, {
+      $pull: { reviews: review_id },
     });
-    await park.save();
-    console.log(park.reviews);
-    console.log("successfully updated park review");
-    res.redirect(`/national-parks/${park._id}`);
+    console.log(park);
+    await Review.findByIdAndDelete(review_id);
+    console.log("successfully deleted review");
+    res.redirect(`/national-parks/${park_id}`);
   })
 );
 // Error handling

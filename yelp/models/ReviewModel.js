@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const NationalPark = require("../models/NationalParkModel");
+const NationalPark = require("./NationalParkModel");
 const Schema = mongoose.Schema;
 
 const validRatings = [1, 2, 3, 4, 5];
@@ -11,7 +11,6 @@ const reviewSchema = new Schema({
     enum: validRatings,
   },
   description: String,
-  parkId: Schema.Types.ObjectId,
 });
 
 const Review = mongoose.model("Review", reviewSchema);
