@@ -1,4 +1,5 @@
 const express = require("express");
+// #1 - First Create a router that lets you use different files to organize your routes
 const router = express.Router();
 
 // #2 - Create your routes using `router.` instead of `app.` and do not include the 'reviews' prefix
