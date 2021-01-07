@@ -19,7 +19,7 @@ const ParkSchema = new Schema({
 // Delete all the reviews if you delete a park
 ParkSchema.post("findOneAndDelete", async function (park) {
   if (park.reviews.length) {
-    const res = await Review.deleteMany({ _id: { $in: park.reviews } });
+    const res = await Review.remove({ _id: { $in: park.reviews } });
     console.log("Deletion of Park successfully and deleted relevant reviews");
     console.log(res);
   }
