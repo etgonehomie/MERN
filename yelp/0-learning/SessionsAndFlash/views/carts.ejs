@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+  </head>
+  <body>
+    <% if (messages) { %>
+    <h2><%= messages %></h2>
+    <% } %>
+    <h1>You have <%= numberOfItems %> items in your cart</h1>
+    <button><a href="/cart/addItem">Add another Item</a></button>
+    <button><a href="/cart/removeItems">Clear Cart</a></button>
+  </body>
+</html>
