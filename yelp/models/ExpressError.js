@@ -25,7 +25,12 @@ class ExpressError extends Error {
 
       case "TypeError":
         this.status = 500;
-        this.message = "Not correct form input type";
+        if (msg) {
+          this.message = msg;
+        } else {
+          this.message = "Not correct form input type";
+        }
+
         break;
 
       default:
