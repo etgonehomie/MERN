@@ -66,7 +66,7 @@ router.put(
   catchAsync(async (req, res) => {
     const { id } = req.params;
     const inputtedPark = req.body.park;
-    const options = { new: true, useFindAndModify: false };
+    const options = { new: true };
     const park = await NationalPark.findByIdAndUpdate(
       id,
       inputtedPark,

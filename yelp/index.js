@@ -4,17 +4,18 @@ const path = require("path");
 const c = require("./utilities/constants");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
-const app = express();
 const nationalParkRoutes = require("./routes/NationalParkRoutes");
 const reviewRoutes = require("./routes/ReviewRoutes");
 const ExpressError = require("./models/ExpressError");
+
+const app = express();
 
 // Set view Engine
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
-// Allow serving of static files for templates to use
+// Allow serving of static files for partials and templates to use
 app.use(express.static(path.join(__dirname, "/public")));
 
 // Defines what data the server can parse
@@ -26,7 +27,9 @@ app.use(methodOverride("_method"));
 mongoose
   .connect(`mongodb://localhost:${c.databasePort}/${c.databaseName}`, {
     useNewUrlParser: true,
+    useCreateIndex: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   })
   .then(() => {
     console.log(`Connection Success: ${c.displayDatabaseHeader()} open`);
