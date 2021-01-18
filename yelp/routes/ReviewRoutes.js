@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
+const flash = require("connect-flash");
 const catchAsync = require("../utilities/catchWrapper");
 const {
   reviewValidationSchema,
@@ -31,6 +32,7 @@ router.post(
     park.reviews.push(review._id);
     await park.save();
     await review.save();
+    req.flash("success", `Added new ${review.rating} star review.`);
     res.redirect(`/national-parks/${park._id}`);
   })
 );
@@ -70,6 +72,7 @@ router.delete(
     console.log(park);
     await Review.findByIdAndDelete(id);
     console.log("successfully deleted review");
+    req.flash("success", `Deleted your review.`);
     res.redirect(`/national-parks/${park_id}`);
   })
 );

@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const express = require("express");
+const session = require("express-session");
+const flash = require("connect-flash");
+
 const path = require("path");
 const c = require("./utilities/constants");
 const ejsMate = require("ejs-mate");
@@ -7,6 +10,7 @@ const methodOverride = require("method-override");
 const nationalParkRoutes = require("./routes/NationalParkRoutes");
 const reviewRoutes = require("./routes/ReviewRoutes");
 const ExpressError = require("./models/ExpressError");
+const { RSA_NO_PADDING } = require("constants");
 
 const app = express();
 
@@ -22,6 +26,19 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
+// Authentication
+const sessionOptions = {
+  secret: "thisIsMySecretSignage",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + c.weeksToMilliseconds(1),
+    maxAge: c.weeksToMilliseconds(1),
+  },
+};
+app.use(session(sessionOptions));
+app.use(flash());
 
 // Boiler plate for Mongoose
 mongoose
@@ -42,6 +59,15 @@ mongoose
     console.log(`Error: ${e}`);
   });
 
+// Flash messages
+app.use((req, res, next) => {
+  res.locals.successes = req.flash("success");
+  res.locals.errors = req.flash("error");
+  res.locals.warnings = req.flash("warning");
+  next();
+});
+
+// Routes
 app.use("/national-parks", nationalParkRoutes);
 app.use("/national-parks/:park_id/reviews", reviewRoutes);
 

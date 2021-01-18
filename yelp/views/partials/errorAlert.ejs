@@ -1,0 +1,15 @@
+<% if (errors.length) { %>
+<div
+  class="alert alert-danger alert-dismissible fade show text-center"
+  role="alert"
+>
+  <h4 class="alert-heading"><%= errors[0].title %></h4>
+  <%= errors[0].message %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<% } %>

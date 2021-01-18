@@ -1,23 +1,23 @@
 const express = require("express");
 const router = express.Router();
+const flash = require("connect-flash");
 const ejsParksDirectory = "../views/national-parks";
 const ExpressError = require("../models/ExpressError");
 const catchAsync = require("../utilities/catchWrapper");
 const NationalPark = require("../models/NationalParkModel");
+const { flashType } = require("../utilities/constants");
+
 const {
   parkValidationSchema,
 } = require("../models/Validations/ParkValidationSchema");
 
+// Go to park directory
 router.get("/", async (req, res) => {
   const parks = await NationalPark.find({});
   res.render(`${ejsParksDirectory}/home`, { parks });
 });
 
-// Create a new park
-router.get("/new", (req, res) => {
-  res.render(`${ejsParksDirectory}/create`);
-});
-
+// Validate park
 const parkValidation = (req, res, next) => {
   const { error } = parkValidationSchema.validate(req.body);
   if (error) {
@@ -29,6 +29,12 @@ const parkValidation = (req, res, next) => {
   next();
 };
 
+// Go to new park create page
+router.get("/new", (req, res) => {
+  res.render(`${ejsParksDirectory}/create`);
+});
+
+// Create new park
 router.post(
   "/",
   parkValidation,
@@ -36,6 +42,7 @@ router.post(
     console.log("saving new park now");
     const park = new NationalPark(req.body.park);
     await park.save();
+    req.flash("success", "New park successfully created!");
     res.redirect("/national-parks");
   })
 );
@@ -46,6 +53,14 @@ router.get(
   catchAsync(async (req, res) => {
     const { id } = req.params;
     const park = await NationalPark.findById(id).populate("reviews");
+    if (!park) {
+      console.log("Park not found");
+      req.flash(flashType.ERROR, {
+        title: "Could not find park",
+        message: "Not correct ID",
+      });
+      res.redirect("/national-parks");
+    }
     res.render(`${ejsParksDirectory}/show`, { park });
   })
 );
@@ -82,6 +97,10 @@ router.delete(
   catchAsync(async (req, res) => {
     const { id } = req.params;
     const park = await NationalPark.findByIdAndDelete(id);
+    req.flash(
+      flashType.SUCCESS,
+      "Successfully trashed the park into the abyss!!!"
+    );
     res.redirect("/national-parks");
   })
 );
